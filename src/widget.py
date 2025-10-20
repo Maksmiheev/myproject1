@@ -23,7 +23,4 @@ def mask_account_card(input_str: str) -> str:
 
     return f"{name} {masked_number}"
 
-def get_date(date_str: str) -> str:
-    """принимает строку и возвращает в формате "11.03.2024"""
-    dt = datetime.fromisoformat(date_str)
-    return dt.strftime("%d.%m.%Y")
+
