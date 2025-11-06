@@ -1,4 +1,3 @@
-from typing import Optional
 
 
 def get_mask_card_number(card_number: str) -> str:
@@ -9,6 +8,7 @@ def get_mask_card_number(card_number: str) -> str:
     middle = "**"
     result = f"{first_part[:-2]} {middle} **** {last_part}"
     return result
+
 
 def get_mask_account(account_number: str) -> str:
     """Возвращает замаскированный банковский счет в формате **XXXX."""

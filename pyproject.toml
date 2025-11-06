@@ -23,6 +23,14 @@ lint = [
     "black (>=25.9.0,<26.0.0)",
     "isort (>=6.1.0,<7.0.0)"
 ]
+dev = [
+    "pytest (>=8.4.2,<9.0.0)",
+    "pytest-cov (>=7.0.0,<8.0.0)"
+]
+
+[tool.flake8]
+line-length = 119
+
 
 [tool.black]
 line-length = 119
