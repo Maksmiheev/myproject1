@@ -36,8 +36,6 @@ line-length = 119
 line-length = 119
 exclude = '.git'
 
-[tool.isort]
-line-length = 119
 
 [tool.mypy]
 disallow_any_unimported = true
