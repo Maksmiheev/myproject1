@@ -4,4 +4,3 @@ venv/
 *.pyc
 *.log
 !debug.log
-.idea
