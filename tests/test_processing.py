@@ -1,6 +1,7 @@
 import unittest
-import pytest
 from typing import Any, Dict, List
+
+import pytest
 
 
 # Функция фильтрации списка по состоянию

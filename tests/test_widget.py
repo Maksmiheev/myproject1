@@ -1,6 +1,7 @@
 import unittest
-import pytest
 from datetime import datetime
+
+import pytest
 
 
 # Функции маскирования номеров
