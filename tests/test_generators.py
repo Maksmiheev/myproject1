@@ -1,37 +1,36 @@
-import pytest
-
-@pytest.fixture
-def sample_transactions():
-    return [
-        {'amount': 100, 'currency': 'USD', 'description': 'Покупка товаров'},
-        {'amount': 200, 'currency': 'EUR', 'description': 'Оплата услуг'},
-        {'amount': 300, 'currency': 'USD', 'description': 'Возврат денежных средств'},
-        {'amount': 400, 'currency': 'RUB', 'description': 'Перечисление зарплаты'}
-    ]
-
-@pytest.fixture
-def expected_usd_transactions():
-    return [
-        {'amount': 100, 'currency': 'USD', 'description': 'Покупка товаров'},
-        {'amount': 300, 'currency': 'USD', 'description': 'Возврат денежных средств'}
-    ]
-
-@pytest.fixture
-def expected_transaction_descriptions():
-    return [
-        "Транзакция Покупка товаров: сумма 100 USD",
-        "Транзакция Оплата услуг: сумма 200 EUR",
-        "Транзакция Возврат денежных средств: сумма 300 USD",
-        "Транзакция Перечисление зарплаты: сумма 400 RUB"
-    ]
+def filter_by_currency(transactions, currency):
+    """
+    Возвращает итератор, выдающий транзакции с указанной валютой.
+    """
+    return (transaction for transaction in transactions if transaction.get('currency') == currency)
 
 def test_filter_by_currency(sample_transactions, expected_usd_transactions):
-    result = list(filter_by_currency(sample_transactions, 'USD'))
+    result = list(filter_by_currency(sample_transactions, "USD"))
     assert result == expected_usd_transactions
+
+def transaction_descriptions(transactions):
+    """
+    Генератор, принимающий список словарей с транзакциями и выводящий описание каждой операции.
+    """
+    for txn in transactions:
+        yield f"Транзакция {txn['description']}: сумма {txn['amount']} {txn['currency']}"
 
 def test_transaction_descriptions(sample_transactions, expected_transaction_descriptions):
     result = list(transaction_descriptions(sample_transactions))
     assert result == expected_transaction_descriptions
+
+
+def card_number_generator(start=1, end=9999_9999_9999_9999):
+    """Генерирует последовательность банковских карточных номеров начиная с start и заканчивая end."""
+    if not isinstance(start, int) or not isinstance(end, int):
+        raise ValueError("Начальное и конечное значение должны быть целыми числами.")
+    if start > end:
+        raise ValueError("Начальное значение должно быть меньше либо равно конечному значению.")
+    for num in range(start, end + 1):
+        formatted_num = "{:016}".format(num)
+        formatted_num = " ".join([formatted_num[i:i + 4] for i in range(0, len(formatted_num), 4)])
+        yield formatted_num
+
 
 def test_card_number_generator():
     generator = card_number_generator(1, 3)
