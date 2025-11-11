@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="generators">
+    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="read new">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generators.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/generators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlcov/class_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/htmlcov/class_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlcov/function_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/htmlcov/function_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/htmlcov/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/htmlcov/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/masks.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/masks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_generators.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_generators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_masks.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_masks.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,13 +71,14 @@
     "Python.__init__.executor": "Run",
     "Python.masks.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature/homework__10__2",
+    "git-widget-placeholder": "#8 on feature/homework__10__2",
     "last_opened_file_path": "C:/Users/mihee/PycharmProjects",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mihee\PycharmProjects\pythonProject2\src" />
       <recent name="C:\Users\mihee\PycharmProjects\pythonProject2" />
     </key>
   </component>
@@ -337,7 +344,23 @@
       <option name="project" value="LOCAL" />
       <updated>1762715067124</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="fix error">
+      <option name="closed" value="true" />
+      <created>1762716568068</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1762716568068</updated>
+    </task>
+    <task id="LOCAL-00030" summary="read new">
+      <option name="closed" value="true" />
+      <created>1762716586983</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1762716586983</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -372,7 +395,9 @@
     <MESSAGE value="tests" />
     <MESSAGE value="idea" />
     <MESSAGE value="generators" />
-    <option name="LAST_COMMIT_MESSAGE" value="generators" />
+    <MESSAGE value="fix error" />
+    <MESSAGE value="read new" />
+    <option name="LAST_COMMIT_MESSAGE" value="read new" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -30,21 +30,24 @@ def operations_list():
 def transactions():
     return [{"id": 1, "date": "2023-01-01"}, {"id": 2, "date": "2023-01-03"}, {"id": 3, "date": "2023-01-02"}]
 
+
 @pytest.fixture
 def sample_transactions():
     return [
-        {'amount': 100, 'currency': 'USD', 'description': 'Покупка товаров'},
-        {'amount': 200, 'currency': 'EUR', 'description': 'Оплата услуг'},
-        {'amount': 300, 'currency': 'USD', 'description': 'Возврат денежных средств'},
-        {'amount': 400, 'currency': 'RUB', 'description': 'Перечисление зарплаты'}
+        {"amount": 100, "currency": "USD", "description": "Покупка товаров"},
+        {"amount": 200, "currency": "EUR", "description": "Оплата услуг"},
+        {"amount": 300, "currency": "USD", "description": "Возврат денежных средств"},
+        {"amount": 400, "currency": "RUB", "description": "Перечисление зарплаты"},
     ]
+
 
 @pytest.fixture
 def expected_usd_transactions():
     return [
-        {'amount': 100, 'currency': 'USD', 'description': 'Покупка товаров'},
-        {'amount': 300, 'currency': 'USD', 'description': 'Возврат денежных средств'}
+        {"amount": 100, "currency": "USD", "description": "Покупка товаров"},
+        {"amount": 300, "currency": "USD", "description": "Возврат денежных средств"},
     ]
+
 
 @pytest.fixture
 def expected_transaction_descriptions():
@@ -52,5 +55,5 @@ def expected_transaction_descriptions():
         "Транзакция Покупка товаров: сумма 100 USD",
         "Транзакция Оплата услуг: сумма 200 EUR",
         "Транзакция Возврат денежных средств: сумма 300 USD",
-        "Транзакция Перечисление зарплаты: сумма 400 RUB"
+        "Транзакция Перечисление зарплаты: сумма 400 RUB",
     ]
