@@ -1,52 +1,11 @@
 import pytest
 
-
-def filter_by_currency(transactions, currency_code):
-    """
-    Возвращает итератор, выдающий транзакции с указанным кодом валюты.
-    """
-    return (
-        transaction
-        for transaction in transactions
-        if transaction.get("operationAmount", {}).get("currency", {}).get("code") == currency_code
-    )
+from generators import (card_number_generator, filter_by_currency,transaction_descriptions)
 
 
 def test_filter_by_currency(sample_transactions, expected_usd_transactions):
     result = list(filter_by_currency(sample_transactions, "USD"))
     assert result == expected_usd_transactions
-
-
-def transaction_descriptions(transactions):
-    """
-    Генератор, принимающий список словарей с транзакциями и выводящий описание каждой операции.
-    """
-    for txn in transactions:
-        amount = txn.get("operationAmount", {}).get("amount", "")
-        description = txn.get("description", "")
-        currency = txn.get("operationAmount", {}).get("currency", {}).get("code", "")
-
-        yield f"Транзакция {description}: сумма {amount} {currency}"
-
-
-def test_transaction_descriptions(sample_transactions, expected_transaction_descriptions):
-    result = list(transaction_descriptions(sample_transactions))
-    assert result == expected_transaction_descriptions
-
-
-def card_number_generator(start=1, end=9999_9999_9999_9999):
-    """
-    Генерирует последовательность банковских карточных номеров начиная с start и заканчивая end.
-    """
-    if not isinstance(start, int) or not isinstance(end, int):
-        raise ValueError("Начальное и конечное значения должны быть целыми числами.")
-    if start > end:
-        raise ValueError("Начальное значение должно быть меньше либо равно конечному значению.")
-
-    for num in range(start, end + 1):
-        formatted_num = f"{num:016d}"
-        formatted_num = " ".join([formatted_num[i : i + 4] for i in range(0, len(formatted_num), 4)])
-        yield formatted_num
 
 
 def test_card_number_generator():
