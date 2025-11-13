@@ -1,24 +1,18 @@
-def filter_by_currency(transactions, currency_code):
+def filter_by_currency(transactions, currency):
     """
-    Возвращает итератор, выдающий транзакции с указанным кодом валюты.
+    Возвращает итератор, выдающий транзакции с указанным кодом валюты
     """
-    return (
-        transaction
-        for transaction in transactions
-        if transaction.get("operationAmount", {}).get("currency", {}).get("code") == currency_code
-    )
+    return [tx for tx in transactions if tx['currency'] == currency]
 
 
-def transaction_descriptions(transactions):
+def transaction_description(data):
     """
     Генератор, принимающий список словарей с транзакциями и выводящий описание каждой операции.
     """
-    for txn in transactions:
-        amount = txn.get("operationAmount", {}).get("amount", "")
-        description = txn.get("description", "")
-        currency = txn.get("operationAmount", {}).get("currency", {}).get("code", "")
-
-        yield f"Транзакция {description}: сумма {amount} {currency}"
+    amount = data.get('amount', '')
+    currency = data.get('currency', '')
+    description = data.get('description', '')
+    return f'Транзакция {description}: сумма {amount} {currency}'
 
 
 def card_number_generator(start=1, end=9999_9999_9999_9999):
