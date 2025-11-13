@@ -34,18 +34,25 @@ def transactions():
 @pytest.fixture
 def sample_transactions():
     return [
-        {"amount": 100, "currency": "USD", "description": "Покупка товаров"},
-        {"amount": 200, "currency": "EUR", "description": "Оплата услуг"},
-        {"amount": 300, "currency": "USD", "description": "Возврат денежных средств"},
-        {"amount": 400, "currency": "RUB", "description": "Перечисление зарплаты"},
+        {"currency": "USD", "amount": 100},
+        {"currency": "EUR", "amount": 200},
+        {"currency": "USD", "amount": 300},
+        {"currency": "GBP", "amount": 400},
     ]
 
 
 @pytest.fixture
+def usd_transactions():
+    return [
+        {"currency": "USD", "amount": 100},
+        {"currency": "USD", "amount": 300},
+    ]
+
+
 def expected_usd_transactions():
     return [
-        {"amount": 100, "currency": "USD", "description": "Покупка товаров"},
-        {"amount": 300, "currency": "USD", "description": "Возврат денежных средств"},
+        {"operationAmount": {"amount": "100", "currency": {"code": "USD"}}},
+        {"operationAmount": {"amount": "300", "currency": {"code": "USD"}}},
     ]
 
 
@@ -56,4 +63,45 @@ def expected_transaction_descriptions():
         "Транзакция Оплата услуг: сумма 200 EUR",
         "Транзакция Возврат денежных средств: сумма 300 USD",
         "Транзакция Перечисление зарплаты: сумма 400 RUB",
+    ]
+
+
+@pytest.fixture
+def valid_range():
+    return (1000_0000_0000_0000, 1000_0000_0000_0002)
+
+
+@pytest.fixture
+def invalid_start_value():
+    return ("abc", 1000_0000_0000_0002)
+
+
+@pytest.fixture
+def invalid_end_value():
+    return (1000_0000_0000_0002, "xyz")
+
+
+@pytest.fixture
+def reverse_range():
+    return (1000_0000_0000_0002, 1000_0000_0000_0000)
+
+
+@pytest.fixture
+def sample_transactions_with_amounts():
+    return [
+        {"operationAmount": {"amount": "100", "currency": {"code": "USD"}}, "description": "Покупка"},
+        {"operationAmount": {"amount": "200", "currency": {"code": "EUR"}}, "description": "Операция"},
+        {
+            "operationAmount": {"amount": None, "currency": {"code": None}},
+            "description": "Без суммы",
+        },  # Случай полного отсутствия данных
+    ]
+
+
+@pytest.fixture
+def expected_descriptions():
+    return [
+        "Транзакция Покупка: сумма 100 USD",
+        "Транзакция Операция: сумма 200 EUR",
+        "Транзакция Без суммы: сумма (сумма неизвестна) (валюта неизвестна)",
     ]
