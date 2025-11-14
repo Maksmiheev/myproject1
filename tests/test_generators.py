@@ -4,9 +4,16 @@ from src.generators import (card_number_generator, filter_by_currency,
                             transaction_descriptions)
 
 
-def test_filter_by_currency(sample_transactions, usd_transactions):
-    result = filter_by_currency(sample_transactions, "USD")
-    assert result == usd_transactions
+def test_filter_by_currency():
+    transactions = [
+        {"operationAmount": {"amount": 100, "currency": {"code": "USD"}}},
+        {"operationAmount": {"amount": 200, "currency": {"code": "EUR"}}}
+    ]
+
+    filtered_transactions = list(filter_by_currency(transactions, "USD"))
+    expected_result = [{"operationAmount": {"amount": 100, "currency": {"code": "USD"}}}]
+
+    assert filtered_transactions == expected_result
 
 
 def test_card_number_generator_valid(valid_range):
@@ -16,8 +23,13 @@ def test_card_number_generator_valid(valid_range):
     assert result == expected_result
 
 
-def test_transaction_descriptions(sample_transactions_with_amounts, expected_descriptions):
-    gen = transaction_descriptions(sample_transactions_with_amounts)
-    result = list(gen)
-    print(result)  # Выводим результат для диагностики
-    assert result == expected_descriptions
+def test_transaction_descriptions(sample_transactions):
+    expected_results = [
+        "Транзакция Пополнение счета: сумма 100 RUB",
+        "Транзакция неизвестно: сумма 200 USD",
+        "Транзакция неизвестно: сумма   "
+    ]
+
+    actual_results = list(transaction_descriptions(sample_transactions))
+
+    assert actual_results == expected_results

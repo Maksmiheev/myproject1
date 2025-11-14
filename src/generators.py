@@ -1,8 +1,12 @@
-def filter_by_currency(transactions, currency):
+def filter_by_currency(transactions, currency_code):
     """
-    Возвращает итератор, выдающий транзакции с указанным кодом валюты
+    Возвращает итератор, выдающий транзакции с указанным кодом валюты.
     """
-    return [tx for tx in transactions if tx["currency"] == currency]
+    return (
+        transaction
+        for transaction in transactions
+        if transaction.get("operationAmount", {}).get("currency", {}).get("code") == currency_code
+    )
 
 
 def transaction_descriptions(transactions):
@@ -10,9 +14,9 @@ def transaction_descriptions(transactions):
     Генератор, принимающий список словарей с транзакциями и выводящий описание каждой операции.
     """
     for txn in transactions:
-        amount = txn.get("operationAmount", {}).get("amount") or "(сумма неизвестна)"
-        description = txn.get("description", "")
-        currency = txn.get("operationAmount", {}).get("currency", {}).get("code") or "(валюта неизвестна)"
+        amount = txn.get("operationAmount", {}).get("amount", "") or ""
+        description = txn.get("description", "неизвестно")
+        currency = txn.get("operationAmount", {}).get("currency", {}).get("code", "")
 
         yield f"Транзакция {description}: сумма {amount} {currency}"
 

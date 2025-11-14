@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="end all">
+    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment=" (">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generators.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/generators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_generators.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_generators.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,12 +62,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python tests.Python tests in test_widget.py.executor": "Run",
+    "Python tests.pytest for test_generators.test_transaction_descriptions.executor": "Run",
     "Python tests.pytest in test_generators.py.executor": "Run",
     "Python.__init__.executor": "Run",
     "Python.masks.executor": "Run",
     "Python.ш.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "#12 on feature/homework__10__2",
+    "git-widget-placeholder": "#13 on feature/homework__10__2",
     "last_opened_file_path": "C:/Users/mihee/PycharmProjects",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
@@ -79,7 +79,7 @@
       <recent name="C:\Users\mihee\PycharmProjects\pythonProject2" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_generators.py">
+  <component name="RunManager" selected="Python tests.pytest for test_generators.test_transaction_descriptions">
     <configuration name="ш" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject2" />
       <option name="ENV_FILES" value="" />
@@ -117,6 +117,23 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="pytest for test_generators.test_transaction_descriptions" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject2" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_generators.test_transaction_descriptions&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="pytest in test_generators.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject2" />
       <option name="ENV_FILES" value="" />
@@ -136,6 +153,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest for test_generators.test_transaction_descriptions" />
         <item itemvalue="Python tests.pytest in test_generators.py" />
         <item itemvalue="Python.ш" />
         <item itemvalue="Python tests.Python tests in test_widget.py" />
@@ -422,7 +440,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763043461145</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary=" (">
+      <option name="closed" value="true" />
+      <created>1763051219980</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1763051219980</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -461,7 +487,8 @@
     <MESSAGE value="read new" />
     <MESSAGE value="rework" />
     <MESSAGE value="end all" />
-    <option name="LAST_COMMIT_MESSAGE" value="end all" />
+    <MESSAGE value=" (" />
+    <option name="LAST_COMMIT_MESSAGE" value=" (" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
