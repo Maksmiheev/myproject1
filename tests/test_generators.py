@@ -27,7 +27,7 @@ def test_transaction_descriptions(sample_transactions):
     expected_results = [
         "Транзакция Пополнение счета: сумма 100 RUB",
         "Транзакция неизвестно: сумма 200 USD",
-        "Транзакция неизвестно: сумма   "
+        "Транзакция неизвестно: сумма  "
     ]
 
     actual_results = list(transaction_descriptions(sample_transactions))
