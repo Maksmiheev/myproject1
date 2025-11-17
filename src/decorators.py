@@ -1,30 +1,43 @@
 import functools
-import sys
-import traceback
+import logging
+
 
 def log(filename=None):
+    """
+    Декоратор для логирования начала и окончания выполнения функции, а также её результата.
+
+    """
+    logger = logging.getLogger('log_decorator')
+    logger.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(levelname)s %(funcName)s: %(message)s')
+
+    if filename:
+        handler = logging.FileHandler(filename, encoding='utf-8')
+    else:
+        handler = logging.StreamHandler()
+    handler.setFormatter(formatter)
+    if logger.hasHandlers():
+        logger.handlers.clear()
+    logger.addHandler(handler)
+
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            output = sys.stdout if filename is None else open(filename, 'a', encoding='utf-8')
+            logger.info(f"Начало выполнения функции")
             try:
-                print(f"Начало выполнения функции: {func.__name__}", file=output)
                 result = func(*args, **kwargs)
-                print(f"Функция {func.__name__} успешно выполнена. Результат: {result}", file=output)
+                logger.info(f"Функция успешно выполнена. Результат: {result}")
                 return result
             except Exception as e:
                 args_repr = ", ".join(repr(a) for a in args)
                 kwargs_repr = ", ".join(f"{k}={v!r}" for k, v in kwargs.items())
                 params = ", ".join(filter(None, [args_repr, kwargs_repr]))
-                print(f"Ошибка в функции {func.__name__}: {type(e).__name__}. Входные параметры: {params}", file=output)
-                print(f"Трассировка ошибки:\n{traceback.format_exc()}", file=output)
+                logger.error(f"Ошибка: {type(e).__name__}. Входные параметры: {params}")
                 raise
             finally:
-                if filename is not None:
-                    output.close()
-                else:
-                    output.flush()
-                if filename is None:
-                    print(f"Конец выполнения функции: {func.__name__}")
+                for h in logger.handlers:
+                    h.flush()
+
         return wrapper
+
     return decorator

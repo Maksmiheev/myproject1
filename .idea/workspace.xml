@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment=" ennnnnn">
-      <change afterPath="$PROJECT_DIR$/src/decorators.py" afterDir="false" />
+    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_generators.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_generators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/decorators.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/decorators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_decorators.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_decorators.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +68,7 @@
     "Python.masks.executor": "Run",
     "Python.ш.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "#14 on feature/homework__10__2",
+    "git-widget-placeholder": "feature/homework__10__2",
     "last_opened_file_path": "C:/Users/mihee/PycharmProjects",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
@@ -456,7 +456,47 @@
       <option name="project" value="LOCAL" />
       <updated>1763153488468</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="idea">
+      <option name="closed" value="true" />
+      <created>1763319996071</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1763319996071</updated>
+    </task>
+    <task id="LOCAL-00037" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1763320016183</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1763320016183</updated>
+    </task>
+    <task id="LOCAL-00038" summary="decorators.py">
+      <option name="closed" value="true" />
+      <created>1763320038615</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1763320038615</updated>
+    </task>
+    <task id="LOCAL-00039" summary="test decorators">
+      <option name="closed" value="true" />
+      <created>1763320055117</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1763320055117</updated>
+    </task>
+    <task id="LOCAL-00040" summary=".">
+      <option name="closed" value="true" />
+      <created>1763320068126</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1763320068126</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,10 +511,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="get_mask_acc" />
-    <MESSAGE value="get_date fuhction" />
-    <MESSAGE value="init" />
-    <MESSAGE value="src\masks.py" />
     <MESSAGE value="com" />
     <MESSAGE value="processing" />
     <MESSAGE value="filter_by_state" />
@@ -488,7 +524,6 @@
     <MESSAGE value="tests proc" />
     <MESSAGE value="tests wid" />
     <MESSAGE value="tests" />
-    <MESSAGE value="idea" />
     <MESSAGE value="generators" />
     <MESSAGE value="fix error" />
     <MESSAGE value="read new" />
@@ -496,7 +531,12 @@
     <MESSAGE value="end all" />
     <MESSAGE value=" (" />
     <MESSAGE value=" ennnnnn" />
-    <option name="LAST_COMMIT_MESSAGE" value=" ennnnnn" />
+    <MESSAGE value="idea" />
+    <MESSAGE value="coverage" />
+    <MESSAGE value="decorators.py" />
+    <MESSAGE value="test decorators" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -505,6 +545,11 @@
           <url>file://$PROJECT_DIR$/tests/test_widget.py</url>
           <line>90</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/decorators.py</url>
+          <line>1</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
