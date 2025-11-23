@@ -55,6 +55,6 @@ def test_file_logging_success_and_error(tmp_path, caplog):
     assert any("Ошибка: TypeError" in rec.message for rec in error_logs)
     assert any("3" in rec.message and "'oops'" in rec.message or '"oops"' in rec.message for rec in error_logs)
 
-    # Проверка, что лог файл создан и не пустой
+
     assert log_file.exists() and log_file.stat().st_size > 0
 
