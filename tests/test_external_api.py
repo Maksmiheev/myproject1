@@ -45,14 +45,14 @@ class TestCurrencyConversion(unittest.TestCase):
         result = process_transaction(transaction)
         self.assertEqual(result, 1000)
 
-    @patch('your_module.convert_currency')
+    @patch('external_api.convert_currency')
     def test_process_transaction_usd(self, mock_convert):
         mock_convert.return_value = 8000
         transaction = {'amount': 100, 'currency': 'USD'}
         result = process_transaction(transaction)
         self.assertEqual(result, 8000)
 
-    @patch('your_module.convert_currency')
+    @patch('external_api.convert_currency')
     def test_process_transaction_eur(self, mock_convert):
         mock_convert.return_value = 9000
         transaction = {'amount': 100, 'currency': 'EUR'}

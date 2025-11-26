@@ -16,7 +16,7 @@ def load_environment_variables(env_file=".env"):
     }
 env_vars = load_environment_variables()
 API_KEY = env_vars["api_key"]
-BASE_URL = "https://api.apilayer.com/exchangerates_data/latest"
+BASE_URL = "https://api.apilayer.com/exchangerates_data/convert"
 HEADERS = {"apikey": API_KEY}
 def convert_currency(amount: float, from_currency: str, to_currency: str = "RUB") -> float:
     """
