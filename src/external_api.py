@@ -14,6 +14,8 @@ def load_environment_variables(env_file=".env"):
     return {
         "api_key": api_key_exchange_rates_data
     }
+
+
 env_vars = load_environment_variables()
 API_KEY = env_vars["api_key"]
 BASE_URL = "https://api.apilayer.com/exchangerates_data/convert"
@@ -24,7 +26,6 @@ def process_transaction(transaction: dict) -> float:
     """
     Обрабатывает финансовую транзакцию и возвращает сумму в рублях.
     """
-
     details = transaction.get('details', {})
     amount = details.get('amount')
     currency = details.get('currency').upper() if details.get('currency') else None
@@ -35,7 +36,21 @@ def process_transaction(transaction: dict) -> float:
     if currency is None or currency.strip() == '':
         raise ValueError("Отсутствует валюта транзакции.")
 
-    return amount
+    params = {
+        "from": currency,
+        "to": "RUB",
+        "amount": amount
+    }
+
+    response = requests.get(BASE_URL, headers=HEADERS, params=params)
+
+    if response.status_code != 200:
+        raise Exception(f"Ошибка при запросе к API: {response.text}")
+
+    data = response.json()
+    converted_amount = data.get("result")
+
+    return converted_amount
 
 
 

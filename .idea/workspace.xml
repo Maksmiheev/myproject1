@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="rework external, tests and json_file">
+    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="rework json homew">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/external_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_external_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_external_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +66,7 @@
     "Python.masks.executor": "Run",
     "Python.ш.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "#18 on feature/homework__10__2",
+    "git-widget-placeholder": "#19 on feature/homework__10__2",
     "last_opened_file_path": "C:/Users/mihee/PycharmProjects",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
@@ -529,7 +527,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764161254470</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="rework json homew">
+      <option name="closed" value="true" />
+      <created>1764274985593</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1764274985593</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -544,7 +550,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="sort_by_date" />
     <MESSAGE value="README.md" />
     <MESSAGE value="docstring" />
     <MESSAGE value="annotation" />
@@ -569,7 +574,8 @@
     <MESSAGE value="external_api and utils" />
     <MESSAGE value="tests" />
     <MESSAGE value="rework external, tests and json_file" />
-    <option name="LAST_COMMIT_MESSAGE" value="rework external, tests and json_file" />
+    <MESSAGE value="rework json homew" />
+    <option name="LAST_COMMIT_MESSAGE" value="rework json homew" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
