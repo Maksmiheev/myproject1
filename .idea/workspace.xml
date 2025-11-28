@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="ex api" />
+    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="ex api 2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/masks.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/masks.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -564,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764360183612</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="ex api 2">
+      <option name="closed" value="true" />
+      <created>1764360351740</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1764360351740</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -581,7 +592,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="annotation" />
     <MESSAGE value="del" />
     <MESSAGE value="redel" />
     <MESSAGE value="tests get_mask_card_number" />
@@ -606,7 +616,8 @@
     <MESSAGE value="rework json homew" />
     <MESSAGE value="API add" />
     <MESSAGE value="ex api" />
-    <option name="LAST_COMMIT_MESSAGE" value="ex api" />
+    <MESSAGE value="ex api 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="ex api 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
