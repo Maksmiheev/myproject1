@@ -18,7 +18,6 @@ def load_environment_variables(env_file="../.env"):
         "api_key": api_key_exchange_rates_data
     }
 
-
 env_vars = load_environment_variables()
 API_KEY = env_vars["api_key"]
 BASE_URL = "https://api.apilayer.com/exchangerates_data/convert"
@@ -64,9 +63,10 @@ if __name__ == "__main__":
     for i, transaction in enumerate(transactions[:5]):
         try:
             result = process_transaction(transaction)
-            print(f"Транзакция №{i+1}: Получено {transaction['amount']} {transaction['currency']}, эквивалентно {result:.2f} рублей.")
+            print(f"Транзакция №{i + 1}: Получено {transaction['amount']} {transaction['currency']}, эквивалентно {result:.2f} рублей.")
         except Exception as e:
-            print(f"Ошибка обработки транзакции №{i+1}: {e}")
+            print(f"Ошибка обработки транзакции №{i + 1}: {e}")
+
 
 
 
