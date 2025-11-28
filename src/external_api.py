@@ -18,6 +18,7 @@ def load_environment_variables(env_file="../.env"):
         "api_key": api_key_exchange_rates_data
     }
 
+
 env_vars = load_environment_variables()
 API_KEY = env_vars["api_key"]
 BASE_URL = "https://api.apilayer.com/exchangerates_data/convert"

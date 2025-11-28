@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="API add">
-      <change beforePath="$PROJECT_DIR$/src/external_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/external_api.py" afterDir="false" />
-    </list>
+    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="ex api" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,6 +67,13 @@
     "git-widget-placeholder": "#19 on feature/homework__10__2",
     "last_opened_file_path": "C:/Users/mihee/PycharmProjects",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  },
+  "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -543,7 +548,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764357771955</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="ex api">
+      <option name="closed" value="true" />
+      <created>1764359503885</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1764359503885</updated>
+    </task>
+    <task id="LOCAL-00048" summary="ex api">
+      <option name="closed" value="true" />
+      <created>1764360183612</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1764360183612</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -558,7 +579,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="docstring" />
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="annotation" />
     <MESSAGE value="del" />
     <MESSAGE value="redel" />
@@ -583,7 +605,8 @@
     <MESSAGE value="rework external, tests and json_file" />
     <MESSAGE value="rework json homew" />
     <MESSAGE value="API add" />
-    <option name="LAST_COMMIT_MESSAGE" value="API add" />
+    <MESSAGE value="ex api" />
+    <option name="LAST_COMMIT_MESSAGE" value="ex api" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
