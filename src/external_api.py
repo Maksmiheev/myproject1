@@ -1,10 +1,13 @@
+import os
+import json
 import requests
 from dotenv import load_dotenv
-import os
 
 
-def load_environment_variables(env_file=".env"):
-    """Загружает переменные окружения из .env"""
+def load_environment_variables(env_file="../.env"):
+    """
+    Загружает переменные окружения из .env.
+    """
     load_dotenv(dotenv_path=env_file)
 
     api_key_exchange_rates_data = os.getenv("API_KEY_EXCHANGE_RATES_DATA")
@@ -26,15 +29,15 @@ def process_transaction(transaction: dict) -> float:
     """
     Обрабатывает финансовую транзакцию и возвращает сумму в рублях.
     """
-    details = transaction.get('details', {})
-    amount = details.get('amount')
-    currency = details.get('currency').upper() if details.get('currency') else None
+    amount = transaction.get('amount')
+    currency = transaction.get('currency').upper() if transaction.get('currency') else None
 
     if not isinstance(amount, (float, int)) or amount <= 0:
         raise ValueError("Некорректная сумма транзакции.")
 
     if currency is None or currency.strip() == '':
         raise ValueError("Отсутствует валюта транзакции.")
+
 
     params = {
         "from": currency,
@@ -51,6 +54,19 @@ def process_transaction(transaction: dict) -> float:
     converted_amount = data.get("result")
 
     return converted_amount
+
+
+if __name__ == "__main__":
+
+    with open("../operations.json", "r") as file:
+        transactions = json.load(file)
+
+    for i, transaction in enumerate(transactions[:5]):
+        try:
+            result = process_transaction(transaction)
+            print(f"Транзакция №{i+1}: Получено {transaction['amount']} {transaction['currency']}, эквивалентно {result:.2f} рублей.")
+        except Exception as e:
+            print(f"Ошибка обработки транзакции №{i+1}: {e}")
 
 
 
