@@ -29,26 +29,31 @@ def process_transaction(transaction: dict) -> float:
     """
     Обрабатывает финансовую транзакцию и возвращает сумму в рублях.
     """
-    amount = transaction.get('amount')
-    currency = transaction.get('currency').upper() if transaction.get('currency') else None
 
-    if not isinstance(amount, (float, int)) or amount <= 0:
+    amount_value = transaction.get('operationAmount', {}).get('amount')
+
+    if not isinstance(amount_value, (float, int)) or amount_value <= 0:
         raise ValueError("Некорректная сумма транзакции.")
 
-    if currency is None or currency.strip() == '':
+    # Извлекаем валюту и проверяем её наличие
+    currency_code = transaction.get('operationAmount', {}).get('currency', {}).get('code')
+
+    if currency_code is None or currency_code.strip() == '':
         raise ValueError("Отсутствует валюта транзакции.")
 
 
     params = {
-        "from": currency,
+        "from": currency_code.upper(),
         "to": "RUB",
-        "amount": amount
+        "amount": amount_value
     }
+
 
     response = requests.get(BASE_URL, headers=HEADERS, params=params)
 
     if response.status_code != 200:
         raise Exception(f"Ошибка при запросе к API: {response.text}")
+
 
     data = response.json()
     converted_amount = data.get("result")
@@ -61,10 +66,12 @@ if __name__ == "__main__":
     with open("../operations.json", "r") as file:
         transactions = json.load(file)
 
+
     for i, transaction in enumerate(transactions[:5]):
         try:
             result = process_transaction(transaction)
-            print(f"Транзакция №{i + 1}: Получено {transaction['amount']} {transaction['currency']}, эквивалентно {result:.2f} рублей.")
+            print(f"Транзакция №{i + 1}: Получено {transaction['operationAmount']['amount']} "
+                  f"{transaction['operationAmount']['currency']['code'].upper()}, эквивалентно {result:.2f} рублей.")
         except Exception as e:
             print(f"Ошибка обработки транзакции №{i + 1}: {e}")
 
