@@ -31,16 +31,23 @@ def process_transaction(transaction: dict) -> float:
     """
 
     amount_value = transaction.get('operationAmount', {}).get('amount')
+    if not isinstance(amount_value, str):
+        raise ValueError("Сумма транзакции указана некорректно.")
 
-    if not isinstance(amount_value, (float, int)) or amount_value <= 0:
+    amount_value = float(amount_value.replace(',', '.'))
+
+    if amount_value <= 0:
         raise ValueError("Некорректная сумма транзакции.")
 
-    # Извлекаем валюту и проверяем её наличие
+
     currency_code = transaction.get('operationAmount', {}).get('currency', {}).get('code')
 
     if currency_code is None or currency_code.strip() == '':
         raise ValueError("Отсутствует валюта транзакции.")
 
+
+    if currency_code.upper() not in {'USD', 'EUR'}:
+        return None
 
     params = {
         "from": currency_code.upper(),
@@ -48,12 +55,10 @@ def process_transaction(transaction: dict) -> float:
         "amount": amount_value
     }
 
-
     response = requests.get(BASE_URL, headers=HEADERS, params=params)
 
     if response.status_code != 200:
         raise Exception(f"Ошибка при запросе к API: {response.text}")
-
 
     data = response.json()
     converted_amount = data.get("result")
@@ -63,15 +68,26 @@ def process_transaction(transaction: dict) -> float:
 
 if __name__ == "__main__":
 
-    with open("../operations.json", "r") as file:
-        transactions = json.load(file)
+    file_path = os.path.join(os.path.dirname(__file__), "../data/operations.json")
 
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            transactions = json.load(file)
+    except FileNotFoundError:
+        print("Файл operations.json не найден.")
+        exit()
 
     for i, transaction in enumerate(transactions[:5]):
         try:
             result = process_transaction(transaction)
-            print(f"Транзакция №{i + 1}: Получено {transaction['operationAmount']['amount']} "
-                  f"{transaction['operationAmount']['currency']['code'].upper()}, эквивалентно {result:.2f} рублей.")
+
+            if result is not None:
+                print(f"Транзакция №{i + 1}: Получено {transaction['operationAmount']['amount']} "
+                      f"{transaction['operationAmount']['currency']['code'].upper()}, эквивалентно {result:.2f} рублей.")
+            else:
+                print(
+                    f"Транзакция №{i + 1}: Валюта '{transaction['operationAmount']['currency']['code']}' не поддерживается.")
+
         except Exception as e:
             print(f"Ошибка обработки транзакции №{i + 1}: {e}")
 
