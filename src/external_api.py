@@ -1,22 +1,21 @@
-import os
 import json
+import os
+
 import requests
 from dotenv import load_dotenv
 
 
 def load_environment_variables(env_file="../.env"):
     """
-    Загружает переменные окружения из .env.
+    Загружает переменные окружения из .env файла.
     """
     load_dotenv(dotenv_path=env_file)
 
     api_key_exchange_rates_data = os.getenv("API_KEY_EXCHANGE_RATES_DATA")
     if not api_key_exchange_rates_data:
-        raise ValueError("Переменная API_KEY_EXCHANGE_RATES_DATA отсутствует в .env!")
+        raise ValueError("Переменная API_KEY_EXCHANGE_RATES_DATA отсутствует в файле .env!")
 
-    return {
-        "api_key": api_key_exchange_rates_data
-    }
+    return {"api_key": api_key_exchange_rates_data}
 
 
 env_vars = load_environment_variables()
@@ -30,30 +29,33 @@ def process_transaction(transaction: dict) -> float:
     Обрабатывает финансовую транзакцию и возвращает сумму в рублях.
     """
 
-    amount_value = transaction.get('operationAmount', {}).get('amount')
+    # Извлекаем сумму транзакции
+    amount_value = transaction.get("operationAmount", {}).get("amount")
     if not isinstance(amount_value, str):
         raise ValueError("Сумма транзакции указана некорректно.")
 
-    amount_value = float(amount_value.replace(',', '.'))
+    # Приводим строку к числу с плавающей точкой
+    amount_value = float(amount_value.replace(",", "."))
 
     if amount_value <= 0:
         raise ValueError("Некорректная сумма транзакции.")
 
+    # Извлекаем код валюты
+    currency_code = transaction.get("operationAmount", {}).get("currency", {}).get("code")
 
-    currency_code = transaction.get('operationAmount', {}).get('currency', {}).get('code')
-
-    if currency_code is None or currency_code.strip() == '':
+    if currency_code is None or currency_code.strip() == "":
         raise ValueError("Отсутствует валюта транзакции.")
 
+    # Если валюта уже рубли, ничего конвертировать не надо
+    if currency_code.upper() == "RUB":
+        return amount_value
 
-    if currency_code.upper() not in {'USD', 'EUR'}:
+    # Если валюта отличается от поддерживаемых (USD/EUR), возвращаем None
+    if currency_code.upper() not in {"USD", "EUR"}:
         return None
 
-    params = {
-        "from": currency_code.upper(),
-        "to": "RUB",
-        "amount": amount_value
-    }
+    # Конвертируем валюту через API
+    params = {"from": currency_code.upper(), "to": "RUB", "amount": amount_value}
 
     response = requests.get(BASE_URL, headers=HEADERS, params=params)
 
@@ -82,41 +84,16 @@ if __name__ == "__main__":
             result = process_transaction(transaction)
 
             if result is not None:
-                print(f"Транзакция №{i + 1}: Получено {transaction['operationAmount']['amount']} "
-                      f"{transaction['operationAmount']['currency']['code'].upper()}, эквивалентно {result:.2f} рублей.")
+                print(
+                    f"Транзакция №{i + 1}: Получено {transaction['operationAmount']['amount']} "
+                    f"{transaction['operationAmount']['currency']['code'].upper()}, эквивалентно {result:.2f} рублей."
+                )
+            elif result == 0:
+                print(f"Транзакция №{i + 1}: Сумма была введена неверно.")
             else:
                 print(
-                    f"Транзакция №{i + 1}: Валюта '{transaction['operationAmount']['currency']['code']}' не поддерживается.")
+                    f"Транзакция №{i + 1}: Валюта '{transaction['operationAmount']['currency']['code']}' не поддерживается."
+                )
 
         except Exception as e:
             print(f"Ошибка обработки транзакции №{i + 1}: {e}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

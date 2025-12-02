@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="">
+    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="ex api mb work(">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/decorators.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/decorators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/external_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/external_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/masks.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/masks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +70,7 @@
     "Python.masks.executor": "Run",
     "Python.ш.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "#23 on feature/homework__10__2",
+    "git-widget-placeholder": "#24 on feature/homework__10__2",
     "last_opened_file_path": "C:/Users/mihee/PycharmProjects",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   },
@@ -181,14 +185,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760028566343</updated>
-    </task>
-    <task id="LOCAL-00002" summary="get_data">
-      <option name="closed" value="true" />
-      <created>1760986647175</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1760986647175</updated>
     </task>
     <task id="LOCAL-00003" summary="get_mask_acc">
       <option name="closed" value="true" />
@@ -574,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764363036263</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="ex api mb work(">
+      <option name="closed" value="true" />
+      <created>1764498309967</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1764498309968</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -591,7 +595,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="del" />
     <MESSAGE value="redel" />
     <MESSAGE value="tests get_mask_card_number" />
     <MESSAGE value="tests proc" />
@@ -616,7 +619,8 @@
     <MESSAGE value="API add" />
     <MESSAGE value="ex api" />
     <MESSAGE value="ex api 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="ex api 2" />
+    <MESSAGE value="ex api mb work(" />
+    <option name="LAST_COMMIT_MESSAGE" value="ex api mb work(" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

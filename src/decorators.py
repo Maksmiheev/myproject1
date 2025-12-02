@@ -7,12 +7,12 @@ def log(filename=None):
     Декоратор для логирования начала и окончания выполнения функции, а также её результата.
 
     """
-    logger = logging.getLogger('log_decorator')
+    logger = logging.getLogger("log_decorator")
     logger.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(levelname)s %(funcName)s: %(message)s')
+    formatter = logging.Formatter("%(levelname)s %(funcName)s: %(message)s")
 
     if filename:
-        handler = logging.FileHandler(filename, encoding='utf-8')
+        handler = logging.FileHandler(filename, encoding="utf-8")
     else:
         handler = logging.StreamHandler()
     handler.setFormatter(formatter)
