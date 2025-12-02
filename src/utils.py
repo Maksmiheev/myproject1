@@ -13,7 +13,7 @@ formatter = logging.Formatter(log_format)
 
 current_date = datetime.now().strftime("%Y-%m-%d_%H%M%S")
 file_handler = logging.FileHandler(
-    f"./logs/{current_date}_utils.log", mode="w"
+    f"./logs/{current_date}_loghome.log", mode="w"
 )  # Перезаписываем файл при каждом запуске
 file_handler.setFormatter(formatter)
 

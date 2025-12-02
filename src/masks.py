@@ -1,12 +1,10 @@
 import logging
 from datetime import datetime
 
-LOG_FILE_PATH = "logs/masks.log"
+LOG_FILE_PATH = "logs/loghome.log"
 
 log_format = "%(asctime)s - %(name)s - %(levelname)s: %(message)s"
-logging.basicConfig(
-    filename=LOG_FILE_PATH, level=logging.INFO, format=log_format, datefmt="%Y-%m-%d %H:%M:%S", filemode="w"
-)
+
 
 logger = logging.getLogger("masks")
 logger.setLevel(logging.DEBUG)
