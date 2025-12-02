@@ -1,68 +1,62 @@
 import unittest
 from unittest.mock import patch, MagicMock
 import requests
-from src.external_api import (convert_currency, process_transaction, load_environment_variables)
+from src import external_api
+from src.external_api import (process_transaction, load_environment_variables)
 
 
-class TestCurrencyConversion(unittest.TestCase):
+class TestProcessTransaction(unittest.TestCase):
+    def setUp(self):
+        self.valid_usd_transaction = {
+            "operationAmount": {"amount": "100.00", "currency": {"code": "USD"}},
+        }
+        self.invalid_currency_transaction = {
+            "operationAmount": {"amount": "100.00", "currency": {"code": "GBP"}},
+        }
+        self.rub_transaction = {
+            "operationAmount": {"amount": "100.00", "currency": {"code": "RUB"}},
+        }
+        self.invalid_amount_transaction = {
+            "operationAmount": {"amount": "-100.00", "currency": {"code": "USD"}},
+        }
 
-    @classmethod
-    def setUpClass(cls):
-        cls.env_vars = load_environment_variables()  # Загрузка реальных переменных среды перед началом тестов
-
-    @patch('requests.get')
-    def test_convert_currency_success(self, mock_get):
+    @patch("requests.get")
+    def test_valid_usd_transaction(self, mock_get):
+        """Тестирует успешную конверсию из долларов"""
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.json.return_value = {'rates': {'RUB': 80}}  # Тестируемый обменный курс USD->RUB
+        mock_response.json.return_value = {"result": 7500.00}  # Предположим, курс примерно такой
         mock_get.return_value = mock_response
 
-        result = convert_currency(100, 'USD', 'RUB')  # Запрашиваем конвертацию 100 долларов в рубли
-        self.assertEqual(result, 8000.00)  # Ожидаемый результат: 100*80 = 8000 рублей
+        result = external_api.process_transaction(self.valid_usd_transaction)
+        self.assertEqual(result, 7500.00)
 
-    @patch('requests.get')
-    def test_convert_currency_connection_error(self, mock_get):
-        mock_response = MagicMock()
-        mock_response.status_code = 404
-        mock_response.text = "Not Found"
-        mock_get.return_value = mock_response
+    @patch("requests.get")
+    def test_invalid_currency(self, mock_get):
+        """Тестирует неподдерживаемую валюту"""
+        result = external_api.process_transaction(self.invalid_currency_transaction)
+        self.assertIsNone(result)
 
-        with self.assertRaises(ConnectionError):
-            convert_currency(100, 'USD', 'RUB')
+    def test_rub_transaction(self):
+        """Тестирует случай, когда валюта уже в рублях"""
+        result = external_api.process_transaction(self.rub_transaction)
+        self.assertEqual(result, 100.00)
 
-    @patch('requests.get')
-    def test_convert_currency_unknown_currency(self, mock_get):
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {'rates': {}}
-        mock_get.return_value = mock_response
-
-        with self.assertRaises(KeyError):
-            convert_currency(100, 'USD', 'XXX')  # Валюта XXX не существует
-
-    def test_process_transaction_rub(self):
-        transaction = {'amount': 1000, 'currency': 'RUB'}
-        result = process_transaction(transaction)
-        self.assertEqual(result, 1000)
-
-    @patch('external_api.convert_currency')
-    def test_process_transaction_usd(self, mock_convert):
-        mock_convert.return_value = 8000
-        transaction = {'amount': 100, 'currency': 'USD'}
-        result = process_transaction(transaction)
-        self.assertEqual(result, 8000)
-
-    @patch('external_api.convert_currency')
-    def test_process_transaction_eur(self, mock_convert):
-        mock_convert.return_value = 9000
-        transaction = {'amount': 100, 'currency': 'EUR'}
-        result = process_transaction(transaction)
-        self.assertEqual(result, 9000)
-
-    def test_process_transaction_invalid_currency(self):
-        transaction = {'amount': 100, 'currency': 'XYZ'}
+    def test_invalid_amount(self):
+        """Тестирует ошибку при отрицательной сумме"""
         with self.assertRaises(ValueError):
-            process_transaction(transaction)
+            external_api.process_transaction(self.invalid_amount_transaction)
+
+    @patch("requests.get")
+    def test_api_error(self, mock_get):
+
+        mock_response = MagicMock()
+        mock_response.status_code = 400
+        mock_response.text = "Bad Request"
+        mock_get.return_value = mock_response
+
+        with self.assertRaises(Exception):
+            external_api.process_transaction(self.valid_usd_transaction)
 
 
 if __name__ == '__main__':
