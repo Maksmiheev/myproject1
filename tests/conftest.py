@@ -33,16 +33,11 @@ def transactions():
 
 @pytest.fixture
 def sample_transactions():
-    """ Фикстура для набора транзакций """
+    """Фикстура для набора транзакций"""
     return [
-        {
-            "operationAmount": {"amount": 100, "currency": {"code": "RUB"}},
-            "description": "Пополнение счета"
-        },
-        {
-            "operationAmount": {"amount": 200, "currency": {"code": "USD"}}
-        },
-        {}
+        {"operationAmount": {"amount": 100, "currency": {"code": "RUB"}}, "description": "Пополнение счета"},
+        {"operationAmount": {"amount": 200, "currency": {"code": "USD"}}},
+        {},
     ]
 
 

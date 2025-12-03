@@ -1,7 +1,9 @@
-import pytest
-import os
 import logging
+
+import pytest
+
 from src.decorators import log
+
 
 def test_console_logging_success(caplog):
     @log()
@@ -19,6 +21,7 @@ def test_console_logging_success(caplog):
     assert any("Начало выполнения функции" in rec.message for rec in caplog.records)
     assert any("Функция успешно выполнена. Результат: 12" in rec.message for rec in caplog.records)
 
+
 def test_console_logging_error(caplog):
     @log()
     def div(a, b):
@@ -31,6 +34,7 @@ def test_console_logging_error(caplog):
     error_logs = [rec for rec in caplog.records if rec.levelname == "ERROR"]
     assert any("Ошибка: ZeroDivisionError" in rec.message for rec in error_logs)
     assert any("10" in rec.message and "0" in rec.message for rec in error_logs)
+
 
 def test_file_logging_success_and_error(tmp_path, caplog):
     log_file = tmp_path / "test_log.log"
@@ -45,7 +49,9 @@ def test_file_logging_success_and_error(tmp_path, caplog):
         result = mul(3, 4)
     assert result == 12
     assert any(rec.levelname == "INFO" and "Начало выполнения функции" in rec.message for rec in caplog.records)
-    assert any(rec.levelname == "INFO" and "Функция успешно выполнена. Результат: 12" in rec.message for rec in caplog.records)
+    assert any(
+        rec.levelname == "INFO" and "Функция успешно выполнена. Результат: 12" in rec.message for rec in caplog.records
+    )
 
     with caplog.at_level(logging.INFO):
         with pytest.raises(TypeError):
@@ -55,6 +61,4 @@ def test_file_logging_success_and_error(tmp_path, caplog):
     assert any("Ошибка: TypeError" in rec.message for rec in error_logs)
     assert any("3" in rec.message and "'oops'" in rec.message or '"oops"' in rec.message for rec in error_logs)
 
-
     assert log_file.exists() and log_file.stat().st_size > 0
-

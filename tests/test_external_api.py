@@ -1,8 +1,6 @@
 import unittest
-from unittest.mock import patch, MagicMock
-import requests
+from unittest.mock import MagicMock, patch
 from src import external_api
-from src.external_api import (process_transaction, load_environment_variables)
 
 
 class TestProcessTransaction(unittest.TestCase):
@@ -59,5 +57,5 @@ class TestProcessTransaction(unittest.TestCase):
             external_api.process_transaction(self.valid_usd_transaction)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

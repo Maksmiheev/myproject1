@@ -1,16 +1,18 @@
 import json
 import os
+
 import requests
 from dotenv import load_dotenv
 
 
-def load_environment_variables(env_file="../.env"):
+def load_environment_variables():
     """
     Загружает переменные окружения из .env файла.
     """
-    load_dotenv(dotenv_path=env_file)
+    load_dotenv()
 
     api_key_exchange_rates_data = os.getenv("API_KEY_EXCHANGE_RATES_DATA")
+
     if not api_key_exchange_rates_data:
         raise ValueError("Переменная API_KEY_EXCHANGE_RATES_DATA отсутствует в файле .env!")
 
