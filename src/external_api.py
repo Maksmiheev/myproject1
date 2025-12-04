@@ -30,12 +30,10 @@ def process_transaction(transaction: dict) -> float:
     Обрабатывает финансовую транзакцию и возвращает сумму в рублях.
     """
 
-    # Извлекаем сумму транзакции
     amount_value = transaction.get("operationAmount", {}).get("amount")
     if not isinstance(amount_value, str):
         raise ValueError("Сумма транзакции указана некорректно.")
 
-    # Приводим строку к числу с плавающей точкой
     amount_value = float(amount_value.replace(",", "."))
 
     if amount_value <= 0:

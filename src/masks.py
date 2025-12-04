@@ -9,7 +9,7 @@ log_format = "%(asctime)s - %(name)s - %(levelname)s: %(message)s"
 logger = logging.getLogger("masks")
 logger.setLevel(logging.DEBUG)
 current_date = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-file_handler = logging.FileHandler(f"./logs/{current_date}_masks.log", mode="w")  # 'w' режим перезаписи файла
+file_handler = logging.FileHandler(f"./logs/loghome.log", mode="w")  # 'w' режим перезаписи файла
 file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)

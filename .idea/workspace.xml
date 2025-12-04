@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="code coverage">
+      <change beforePath="$PROJECT_DIR$/.coverage" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/external_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/external_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +69,7 @@
     "Python.masks.executor": "Run",
     "Python.ш.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "#25 on feature/homework__10__2",
+    "git-widget-placeholder": "#27 on feature/homework__10__2",
     "last_opened_file_path": "C:/Users/mihee/PycharmProjects",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   },
@@ -181,14 +184,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760028566343</updated>
-    </task>
-    <task id="LOCAL-00008" summary="com">
-      <option name="closed" value="true" />
-      <created>1760986761967</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1760986761967</updated>
     </task>
     <task id="LOCAL-00009" summary="processing">
       <option name="closed" value="true" />
@@ -574,7 +569,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764792234435</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="code coverage">
+      <option name="closed" value="true" />
+      <created>1764842689075</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1764842689075</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
