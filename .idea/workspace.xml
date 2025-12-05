@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="code coverage">
+    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="coverage">
       <change afterPath="$PROJECT_DIR$/src/csvread.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_external_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_external_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_masks.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_masks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_widget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,22 +205,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760028566343</updated>
-    </task>
-    <task id="LOCAL-00010" summary="filter_by_state">
-      <option name="closed" value="true" />
-      <created>1761508950125</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1761508950125</updated>
-    </task>
-    <task id="LOCAL-00011" summary="sort_by_date">
-      <option name="closed" value="true" />
-      <created>1761509050573</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1761509050573</updated>
     </task>
     <task id="LOCAL-00012" summary="README.md">
       <option name="closed" value="true" />
@@ -604,7 +582,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764843847204</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="code coverage test rework">
+      <option name="closed" value="true" />
+      <created>1764961501261</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1764961501261</updated>
+    </task>
+    <task id="LOCAL-00060" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1764961615364</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1764961615364</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -621,7 +615,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="generators" />
     <MESSAGE value="fix error" />
     <MESSAGE value="read new" />
     <MESSAGE value="rework" />
@@ -629,7 +622,6 @@
     <MESSAGE value=" (" />
     <MESSAGE value=" ennnnnn" />
     <MESSAGE value="idea" />
-    <MESSAGE value="coverage" />
     <MESSAGE value="decorators.py" />
     <MESSAGE value="test decorators" />
     <MESSAGE value="." />
@@ -646,7 +638,9 @@
     <MESSAGE value="test ex_api" />
     <MESSAGE value="fix" />
     <MESSAGE value="code coverage" />
-    <option name="LAST_COMMIT_MESSAGE" value="code coverage" />
+    <MESSAGE value="code coverage test rework" />
+    <MESSAGE value="coverage" />
+    <option name="LAST_COMMIT_MESSAGE" value="coverage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
