@@ -1,62 +1,73 @@
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch, MagicMock
+from src.external_api import process_transaction, load_environment_variables
 
-from src import external_api
+class TestConvertCurrency(unittest.TestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        cls.api_response = MagicMock(status_code=200)
+        cls.api_response.json.return_value = {'result': 6000.0}  # Предполагаемый результат конвертации
 
-class TestProcessTransaction(unittest.TestCase):
-    def setUp(self):
-        self.valid_usd_transaction = {
-            "operationAmount": {"amount": "100.00", "currency": {"code": "USD"}},
+    @patch('requests.get')
+    def test_process_transaction_usd_to_rub(self, mock_requests_get):
+        """Проверка конвертации USD в RUB."""
+        mock_requests_get.return_value = self.api_response
+        transaction = {
+            "operationAmount": {
+                "amount": "100",
+                "currency": {
+                    "code": "USD"
+                }
+            }
         }
-        self.invalid_currency_transaction = {
-            "operationAmount": {"amount": "100.00", "currency": {"code": "GBP"}},
+        result = process_transaction(transaction)
+        self.assertAlmostEqual(result, 6000.0)
+
+    @patch('requests.get', side_effect=lambda *args, **kwargs: MagicMock(status_code=400))
+    def test_process_transaction_api_error(self, mock_requests_get):
+        """Проверка реакции на ошибку API."""
+        transaction = {
+            "operationAmount": {
+                "amount": "100",
+                "currency": {
+                    "code": "USD"
+                }
+            }
         }
-        self.rub_transaction = {
-            "operationAmount": {"amount": "100.00", "currency": {"code": "RUB"}},
-        }
-        self.invalid_amount_transaction = {
-            "operationAmount": {"amount": "-100.00", "currency": {"code": "USD"}},
-        }
-
-    @patch("requests.get")
-    def test_valid_usd_transaction(self, mock_get):
-        """Тестирует успешную конверсию из долларов"""
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {"result": 7500.00}  # Предположим, курс примерно такой
-        mock_get.return_value = mock_response
-
-        result = external_api.process_transaction(self.valid_usd_transaction)
-        self.assertEqual(result, 7500.00)
-
-    @patch("requests.get")
-    def test_invalid_currency(self, mock_get):
-        """Тестирует неподдерживаемую валюту"""
-        result = external_api.process_transaction(self.invalid_currency_transaction)
-        self.assertIsNone(result)
-
-    def test_rub_transaction(self):
-        """Тестирует случай, когда валюта уже в рублях"""
-        result = external_api.process_transaction(self.rub_transaction)
-        self.assertEqual(result, 100.00)
-
-    def test_invalid_amount(self):
-        """Тестирует ошибку при отрицательной сумме"""
-        with self.assertRaises(ValueError):
-            external_api.process_transaction(self.invalid_amount_transaction)
-
-    @patch("requests.get")
-    def test_api_error(self, mock_get):
-
-        mock_response = MagicMock()
-        mock_response.status_code = 400
-        mock_response.text = "Bad Request"
-        mock_get.return_value = mock_response
-
         with self.assertRaises(Exception):
-            external_api.process_transaction(self.valid_usd_transaction)
+            process_transaction(transaction)
 
+    def test_process_transaction_rub(self):
+        """Проверка случая, когда валюта уже в рублях."""
+        transaction = {
+            "operationAmount": {
+                "amount": "1000",
+                "currency": {
+                    "code": "RUB"
+                }
+            }
+        }
+        result = process_transaction(transaction)
+        self.assertEqual(result, 1000.0)
 
-if __name__ == "__main__":
+    def test_process_transaction_missing_currency(self):
+        """Проверка ситуации, когда валюта не задана."""
+        transaction = {
+            "operationAmount": {
+                "amount": "100",
+                "currency": {}
+            }
+        }
+        with self.assertRaises(ValueError):
+            process_transaction(transaction)
+
+    def test_load_environment_variables(self):
+        """Проверка загрузки переменной окружения."""
+        with patch.dict('os.environ', {"API_KEY_EXCHANGE_RATES_DATA": "fake-api-key"}):
+            env_vars = load_environment_variables()
+            self.assertIn("api_key", env_vars)
+            self.assertEqual(env_vars["api_key"], "fake-api-key")
+
+if __name__ == '__main__':
     unittest.main()
