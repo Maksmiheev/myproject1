@@ -38,6 +38,17 @@ sorted_data = sort_by_date(filtered)
 for item in sorted_data:
     print(get_date(item["date"]), mask_account_card(f"Счет {item['account']}"))
 ```
+Пример работы с JSON, CSV и XLSX-файлами с помощью функций `read_financial_csv`, `read_financial_xlsx`
+``` 
+csv_file_path = 'finances.csv'
+operations_from_csv = read_financial_csv(csv_file_path)
+print("Операции из CSV:", operations_from_csv[:3])  # вывод первых трех операций
+
+xlsx_file_path = 'finances.xlsx'
+operations_from_xlsx = read_financial_xlsx(xlsx_file_path)
+print("Операции из XLSX:", operations_from_xlsx[:3])  # вывод первых трех операций
+```
+
 ## Тестирование: 
 Добавлено тестирование функций во всех модулях программы для выявления некорректной работоспособности программы в различных кейсах.
 
