@@ -1,4 +1,5 @@
 import unittest
+
 from src.processing import filter_by_state, sort_by_date
 
 
@@ -9,7 +10,7 @@ class TestOperations(unittest.TestCase):
         self.data = [
             {"id": 1, "state": "EXECUTED", "date": "2023-05-01"},
             {"id": 2, "state": "CANCELED", "date": "2023-04-15"},
-            {"id": 3, "state": "EXECUTED", "date": "2023-04-30"}
+            {"id": 3, "state": "EXECUTED", "date": "2023-04-30"},
         ]
 
     def test_filter_by_state_default(self):
@@ -37,5 +38,5 @@ class TestOperations(unittest.TestCase):
         self.assertListEqual(dates, ["2023-04-15", "2023-04-30", "2023-05-01"])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,6 @@
 import unittest
 from unittest.mock import mock_open, patch
+
 from src.utils import load_financial_transactions
 
 

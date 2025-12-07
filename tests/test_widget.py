@@ -1,5 +1,6 @@
 import unittest
-from src.widget import mask_card, mask_account, mask_account_card, get_date
+
+from src.widget import get_date, mask_account, mask_account_card, mask_card
 
 
 class TestUtilsModule(unittest.TestCase):
@@ -15,11 +16,9 @@ class TestUtilsModule(unittest.TestCase):
     def test_mask_account_card_full(self):
         """Проверка полной маски для строки с номером карты/счета"""
         # Карта
-        self.assertEqual(mask_account_card("Visa Classic 1234567890123456"),
-                         "Visa Classic 123456**********3456")
+        self.assertEqual(mask_account_card("Visa Classic 1234567890123456"), "Visa Classic 123456**********3456")
         # Счёт
-        self.assertEqual(mask_account_card("Счет 40817810999910000001"),
-                         "Счет **************0001")
+        self.assertEqual(mask_account_card("Счет 40817810999910000001"), "Счет **************0001")
 
     def test_get_date(self):
         """Проверка правильного формата даты"""
@@ -28,5 +27,5 @@ class TestUtilsModule(unittest.TestCase):
         self.assertEqual(formatted_date, "11.03.2024")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
