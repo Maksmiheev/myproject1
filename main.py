@@ -10,10 +10,6 @@ from datetime import datetime
 def process_bank_search(data: list[dict], search: str) -> list[dict]:
     """
     Выполняет поиск операций по ключевому слову в описании.
-
-    :param data: Список банковских операций
-    :param search: Критерий поиска (регулярное выражение)
-    :return: Найденный список операций
     """
     pattern = re.compile(search, re.IGNORECASE)
     return [item for item in data if 'description' in item and pattern.search(item['description'])]
@@ -23,9 +19,6 @@ def process_bank_operations(data: list[dict], categories: list[str]) -> dict:
     """
     Производит подсчёт операций по указанным категориям.
 
-    :param data: Список банковских операций
-    :param categories: Категории для анализа
-    :return: Словарь с числом операций по каждой категории
     """
     counter = Counter()
     for operation in data:
@@ -36,13 +29,10 @@ def process_bank_operations(data: list[dict], categories: list[str]) -> dict:
     return dict(counter)
 
 
-# Загрузка данных из файлов
+
 def load_json_data(file_path: str) -> list[dict]:
     """
     Читает данные из JSON-файла.
-
-    :param file_path: Путь к файлу
-    :return: Список объектов из JSON
     """
     with open(file_path, encoding='utf-8') as f:
         return json.load(f)
@@ -51,9 +41,6 @@ def load_json_data(file_path: str) -> list[dict]:
 def load_csv_data(file_path: str) -> list[dict]:
     """
     Читает данные из CSV-файла.
-
-    :param file_path: Путь к файлу
-    :return: Список словарей с данными из CSV
     """
     with open(file_path, newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
@@ -63,9 +50,6 @@ def load_csv_data(file_path: str) -> list[dict]:
 def load_xlsx_data(file_path: str) -> list[dict]:
     """
     Читает данные из XLSX-файла.
-
-    :param file_path: Путь к файлу
-    :return: Список словарей с данными из XLSX
     """
     workbook = openpyxl.load_workbook(file_path)
     sheet = workbook.active
@@ -74,14 +58,10 @@ def load_xlsx_data(file_path: str) -> list[dict]:
     return [{headers[i]: val for i, val in enumerate(row)} for row in rows]
 
 
-# Фильтрация операций по статусу
+
 def filter_by_status(data: list[dict], status: str) -> list[dict]:
     """
     Отбирает операции по указанному статусу.
-
-    :param data: Список операций
-    :param status: Статус для фильтрации
-    :return: Список операций нужного статуса
     """
     return [item for item in data if item.get('state', '').upper() == status.upper()]
 
@@ -90,10 +70,6 @@ def filter_by_status(data: list[dict], status: str) -> list[dict]:
 def sort_by_date(data: list[dict], ascending: bool = True) -> list[dict]:
     """
     Сортирует операции по дате.
-
-    :param data: Список операций
-    :param ascending: Направление сортировки (True — восходящее, False — нисходящее)
-    :return: Отсортированные операции
     """
     def extract_date(op):
         return datetime.strptime(op.get('date', ''), '%Y-%m-%dT%H:%M:%S.%f')
@@ -104,8 +80,6 @@ def sort_by_date(data: list[dict], ascending: bool = True) -> list[dict]:
 def format_output(operation: dict) -> None:
     """
     Выводит одну операцию в удобочитаемом виде.
-
-    :param operation: Объект операции
     """
     date = datetime.strptime(operation.get('date', ''), '%Y-%m-%dT%H:%M:%S.%f')
     formatted_date = date.strftime('%d.%m.%Y')
@@ -118,7 +92,7 @@ def format_output(operation: dict) -> None:
     print(f"Сумма: {amount:.2f} {currency}\n")
 
 
-# Основная программа
+
 def main():
     """
     Запускает основную работу программы.
