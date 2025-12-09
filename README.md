@@ -12,16 +12,17 @@ https://github.com/Maksmiheev/myproject1.git
 pip install -r requirements.txt
 ```
 ## Использование:
-Этот проект позволяет безопасно работать с банковскими данными, маскируя номера карт и счетов, форматируя дату и фильтруя транзакции по состояниюа, а так же быстро и удобно находить нужную информацию о транзакциях и проводить анализ данных.
+Так же обновлен функционал , реализована функция считывания финансовых операций из CSV- и XLSX-файлов, позволяющая пользователю выбрать интересующие его транзакции.
 
 - Импортируйте необходимые функции из модуля.
-- Используйте `mask_card` и `mask_account` для маскировки номеров.
-- Преобразуйте даты в удобочитаемый формат с помощью `get_date`.
-- Фильтруйте и сортируйте данные транзакций посредством `filter_by_state` и `sort_by_date`.
-- Работайте с массивами транзакций с помощью функций `filter_by_currency`, `transaction_descriptions` и `card_number_generator`.
-Пример:
+- Используйте mask_card и mask_account для маскировки номеров.
+- Преобразуйте даты в удобочитаемый формат с помощью get_date.
+- Фильтруйте и сортируйте данные транзакций посредством filter_by_state и sort_by_date.
+- Работайте с массивами транзакций с помощью функций filter_by_currency, transaction_descriptions и card_number_generator.
+- Получайте информацию о транзакциях из JSON, CSV и XLSX-файлов с помощью функций read_financial_csv, read_financial_xlsx и целового модуля main.
 
-```python
+Пример:
+```
 from ваш_модуль import mask_account_card, get_date, filter_by_state, sort_by_date
 
 data = [
@@ -34,6 +35,16 @@ sorted_data = sort_by_date(filtered)
 
 for item in sorted_data:
     print(get_date(item["date"]), mask_account_card(f"Счет {item['account']}"))
+```
+Пример работы с JSON, CSV и XLSX-файлами с помощью функций read_financial_csv, read_financial_xlsx
+```
+csv_file_path = 'finances.csv'
+operations_from_csv = read_financial_csv(csv_file_path)
+print("Операции из CSV:", operations_from_csv[:3])  # вывод первых трех операций
+
+xlsx_file_path = 'finances.xlsx'
+operations_from_xlsx = read_financial_xlsx(xlsx_file_path)
+print("Операции из XLSX:", operations_from_xlsx[:3])  # вывод первых трех операций
 ```
 ## Тестирование: 
 Добавлено тестирование функций во всех модулях программы для выявления некорректной работоспособности программы в различных кейсах.
