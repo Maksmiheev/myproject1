@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="reworkl main" />
+    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="docstring">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -203,14 +205,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760028566343</updated>
-    </task>
-    <task id="LOCAL-00014" summary="annotation">
-      <option name="closed" value="true" />
-      <created>1761595688068</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1761595688068</updated>
     </task>
     <task id="LOCAL-00015" summary="del">
       <option name="closed" value="true" />
@@ -596,7 +590,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765286070868</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="docstring">
+      <option name="closed" value="true" />
+      <created>1765289878169</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1765289878169</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -613,7 +615,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="rework" />
     <MESSAGE value="end all" />
     <MESSAGE value=" (" />
     <MESSAGE value=" ennnnnn" />
@@ -638,7 +639,8 @@
     <MESSAGE value="coverage" />
     <MESSAGE value="fix csv, add main and tests for main" />
     <MESSAGE value="reworkl main" />
-    <option name="LAST_COMMIT_MESSAGE" value="reworkl main" />
+    <MESSAGE value="docstring" />
+    <option name="LAST_COMMIT_MESSAGE" value="docstring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
