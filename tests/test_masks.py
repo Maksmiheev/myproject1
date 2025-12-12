@@ -19,13 +19,13 @@ class TestMaskFunctions(unittest.TestCase):
 
     def test_get_mask_card_number_invalid_length(self):
         """Проверяем обработку некорректной длины картонного номера"""
-        with self.assertRaises(Exception):
+        with self.assertRaises(ValueError):
             get_mask_card_number("12345678901234")
 
     def test_get_mask_account_valid_input(self):
         """Проверяем успешную маску банковского счета"""
         input_data = "123456789012"
-        expected_output = "**1234"
+        expected_output = "**9012"
         self.assertEqual(get_mask_account(input_data), expected_output)
 
     def test_get_mask_account_invalid_length(self):
