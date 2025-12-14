@@ -8,11 +8,13 @@ from main import (filter_by_status, process_bank_operations,
 class TestBankFunctions(unittest.TestCase):
 
     def setUp(self):
+        date_format = "%Y-%m-%dT%H:%M:%S.%f%z"
+
         self.data = [
             {
                 "id": 1,
                 "state": "EXECUTED",
-                "date": "2019-12-08T17:15:00.000+03:00",
+                "date": datetime.strptime("2019-12-08T17:15:00.000+03:00", date_format),
                 "description": "Открытие вклада",
                 "from": "Счет **4321",
                 "to": "",
@@ -21,7 +23,7 @@ class TestBankFunctions(unittest.TestCase):
             {
                 "id": 2,
                 "state": "EXECUTED",
-                "date": "2019-11-12T15:30:00.000+03:00",
+                "date": datetime.strptime("2019-11-12T15:30:00.000+03:00", date_format),
                 "description": "Перевод с карты на карту",
                 "from": "MasterCard 7771 27** **** 3727",
                 "to": "Visa Platinum 1293 38** **** 9203",
@@ -30,10 +32,10 @@ class TestBankFunctions(unittest.TestCase):
             {
                 "id": 3,
                 "state": "CANCELED",
-                "date": "2018-07-18T10:45:00.000+03:00",
+                "date": datetime.strptime("2018-07-18T10:45:00.000+03:00", date_format),
                 "description": "Перевод организации",
                 "from": "Visa Platinum 7492 65** **** 7202",
-                "to": "Счет **0034",
+                "to": "Счёт **0034",
                 "operationAmount": {"amount": "8390", "currency": {"code": "RUB"}},
             },
         ]

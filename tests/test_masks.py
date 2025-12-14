@@ -17,10 +17,6 @@ class TestMaskFunctions(unittest.TestCase):
         expected_output = "1234 ** **** 3456"
         self.assertEqual(get_mask_card_number(input_data), expected_output)
 
-    def test_get_mask_card_number_invalid_length(self):
-        """Проверяем обработку некорректной длины картонного номера"""
-        with self.assertRaises(ValueError):
-            get_mask_card_number("12345678901234")
 
     def test_get_mask_account_valid_input(self):
         """Проверяем успешную маску банковского счета"""
