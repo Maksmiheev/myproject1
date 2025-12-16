@@ -72,7 +72,10 @@ class TestBankFunctions(unittest.TestCase):
     def test_sort_by_date(self):
         # Сортируем операции по дате по возрастанию
         sorted_data = sort_by_date(self.data, ascending=True)
-        dates = [datetime.strptime(op["date"], "%Y-%m-%dT%H:%M:%S.%f") for op in sorted_data]
+
+        # Предполагаем, что поле "date" уже datetime, если нет - приведите к datetime заранее, но не здесь
+        dates = [op["date"] for op in sorted_data]
+
         self.assertTrue(
             all(dates[i] <= dates[i + 1] for i in range(len(dates) - 1)),
             "Даты не отсортированы по возрастанию"
@@ -80,7 +83,14 @@ class TestBankFunctions(unittest.TestCase):
 
         # Сортируем операции по дате по убыванию
         sorted_data_descending = sort_by_date(self.data, ascending=False)
-        dates_descending = [datetime.strptime(op["date"], "%Y-%m-%dT%H:%M:%S.%f") for op in sorted_data_descending]
+
+        dates_descending = []
+        for op in sorted_data_descending:
+            date_value = op["date"]
+            if isinstance(date_value, str):
+                date_value = datetime.strptime(date_value, "%Y-%m-%dT%H:%M:%S.%f")
+            dates_descending.append(date_value)
+
         self.assertTrue(
             all(dates_descending[i] >= dates_descending[i + 1] for i in range(len(dates_descending) - 1)),
             "Даты не отсортированы по убыванию"

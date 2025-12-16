@@ -8,155 +8,113 @@ from datetime import datetime
 
 
 def process_bank_search(data: list[dict], search: str) -> list[dict]:
-    """
-    Выполняет поиск операций по ключевому слову в описании.
-    """
-    pattern = re.compile(search, re.IGNORECASE)
-    return [item for item in data if 'description' in item and pattern.search(item['description'])]
+    pattern = re.compile(re.escape(search), re.IGNORECASE)
+    return [item for item in data if pattern.search(item.get("description", ""))]
+
 
 
 def process_bank_operations(data: list[dict], categories: list[str]) -> dict:
-    """
-    Производит подсчёт операций по указанным категориям.
-
-    """
-    counter = Counter()
-    for operation in data:
-        description = operation.get('description', '')
-        for category in categories:
-            if category.lower() in description.lower():
-                counter.update([category])
-    return dict(counter)
+    descriptions = [item.get("description", "") for item in data]
+    counts = Counter(descriptions)
+    return {category: counts.get(category, 0) for category in categories}
 
 
 
-def load_json_data(file_path: str) -> list[dict]:
-    """
-    Читает данные из JSON-файла.
-    """
-    with open(file_path, encoding='utf-8') as f:
+def load_json(path):
+    with open(path, encoding="utf-8") as f:
         return json.load(f)
 
-
-def load_csv_data(file_path: str) -> list[dict]:
-    """
-    Читает данные из CSV-файла.
-    """
-    with open(file_path, newline='', encoding='utf-8') as f:
+def load_csv(path):
+    with open(path, encoding="utf-8") as f:
         reader = csv.DictReader(f)
         return list(reader)
 
+def load_xlsx(path):
+    wb = openpyxl.load_workbook(path)
+    sheet = wb.active
+    data = []
+    headers = [cell.value for cell in next(sheet.rows)]
+    for row in sheet.iter_rows(min_row=2):
+        data.append({headers[i]: row[i].value for i in range(len(headers))})
+    return data
 
-def load_xlsx_data(file_path: str) -> list[dict]:
-    """
-    Читает данные из XLSX-файла.
-    """
-    workbook = openpyxl.load_workbook(file_path)
-    sheet = workbook.active
-    headers = [cell.value for cell in sheet[1]]
-    rows = [[cell.value for cell in row] for row in sheet.iter_rows(min_row=2)]
-    return [{headers[i]: val for i, val in enumerate(row)} for row in rows]
+def filter_status(data, status):
+    status = status.upper()
+    return [op for op in data if (op.get("status", "").upper() == status)]
 
+def prompt_status():
+    statuses = ["EXECUTED", "CANCELED", "PENDING"]
+    while True:
+        status = input(f'Введите статус, по которому необходимо выполнить фильтрацию.\nДоступные для фильтрации статусы: {", ".join(statuses)}\n').strip().upper()
+        if status in statuses:
+            print(f'Операции отфильтрованы по статусу "{status}"')
+            return status
+        print(f'Статус операции "{status}" недоступен.')
 
-
-def filter_by_status(data: list[dict], status: str) -> list[dict]:
-    """
-    Отбирает операции по указанному статусу.
-    """
-    return [item for item in data if item.get('state', '').upper() == status.upper()]
-
-
-# Сортировка операций по дате
-def sort_by_date(data: list[dict], ascending: bool = True) -> list[dict]:
-    """
-    Сортирует операции по дате.
-    """
-    def extract_date(op):
-        return datetime.strptime(op.get('date', ''), '%Y-%m-%dT%H:%M:%S.%f')
-    return sorted(data, key=extract_date, reverse=not ascending)
-
-
-# Форматирование вывода операций
-def format_output(operation: dict) -> None:
-    """
-    Выводит одну операцию в удобочитаемом виде.
-    """
-    date = datetime.strptime(operation.get('date', ''), '%Y-%m-%dT%H:%M:%S.%f')
-    formatted_date = date.strftime('%d.%m.%Y')
-    from_account = operation.get('from', '').replace('*', '')[-4:] or '-'
-    to_account = operation.get('to', '').replace('*', '')[-4:] or '-'
-    amount = float(operation.get('operationAmount', {}).get('amount', 0))
-    currency = operation.get('operationAmount', {}).get('currency', {}).get('code', '')
-    print(f"{formatted_date} {operation.get('description', '')}")
-    print(f"Счёт отправителя: {from_account} → счёт получателя: {to_account}")
-    print(f"Сумма: {amount:.2f} {currency}\n")
-
-
+def prompt_yes_no(message):
+    while True:
+        answer = input(message + " Да/Нет\n").strip().lower()
+        if answer in ["да", "нет"]:
+            return answer == "да"
+        print("Пожалуйста, введите 'Да' или 'Нет'.")
 
 def main():
-    """
-    Запускает основную работу программы.
-    Осуществляет загрузку данных, фильтр операций по статусу,
-    производит дополнительные запросы и выводит итоговую статистику.
-    """
-    print("Программа обработки банковских транзакций.\\n")
+    print("Привет! Добро пожаловать в программу работы с банковскими транзакциями.")
+    print("Выберите необходимый пункт меню:")
+    print("1. Получить информацию о транзакциях из JSON-файла")
+    print("2. Получить информацию о транзакциях из CSV-файла")
+    print("3. Получить информацию о транзакциях из XLSX-файла")
 
-    # Загрузка первого найденного файла из директории 'data'
-    directory = './data/'
-    files = os.listdir(directory)
-    if not files:
-        print("Ошибка: каталог пуст.")
-        return
-
-    file_name = files[0]
-    full_file_path = os.path.join(directory, file_name)
-
-    # Определяем расширение файла
-    extension = file_name.split('.')[-1].lower()
-    if extension == 'json':
-        data = load_json_data(full_file_path)
-    elif extension == 'csv':
-        data = load_csv_data(full_file_path)
-    elif extension == 'xlsx':
-        data = load_xlsx_data(full_file_path)
-    else:
-        print("Неподдерживаемый формат файла.")
-        return
-
-    # Выбираем статус операций для анализа
-    available_statuses = ["EXECUTED", "CANCELED"]
-    status = input(f"Введите нужный статус ({', '.join(available_statuses)}): ").strip().upper()
-    while status not in available_statuses:
-        print("Некорректный статус. Повторите ввод.")
-        status = input(f"Введите нужный статус ({', '.join(available_statuses)}): ").strip().upper()
-
-    # Фильтруем и сортируем данные
-    filtered_data = filter_by_status(data, status)
-    sorted_data = sort_by_date(filtered_data)
-
-    # Печать операций
-    print(f"\nОтобранные операции с статусом '{status}'\n")
-    for op in sorted_data:
-        format_output(op)
-
-    # Дополнительный поиск операций
-    if input("\nХотите дополнительно провести поиск среди операций? (y/n): ").strip().lower() == 'y':
-        search_query = input("Введите строку для поиска в описаниях операций: ")
-        found_ops = process_bank_search(sorted_data, search_query)
-        if found_ops:
-            print("\nНайдено по вашему запросу:\n")
-            for op in found_ops:
-                format_output(op)
+    while True:
+        choice = input().strip()
+        if choice == "1":
+            print("Для обработки выбран JSON-файл.")
+            data = load_json("data.json")  # Здесь можно запросить у пользователя путь к файлу
+            break
+        elif choice == "2":
+            print("Для обработки выбран CSV-файл.")
+            data = load_csv("data.csv")
+            break
+        elif choice == "3":
+            print("Для обработки выбран XLSX-файл.")
+            data = load_xlsx("data.xlsx")
+            break
         else:
-            print("\nПо вашему запросу ничего не найдено.")
+            print("Некорректный выбор. Пожалуйста, выберите 1, 2 или 3.")
 
-    # Итоговая статистика по операциям
-    categories = ["Оплата услуг", "Переводы", "Покупки"]  # Примеры возможных категорий
-    statistics = process_bank_operations(filtered_data, categories)
-    print("\nИтоговая статистика по категориям операций:")
-    for cat, count in statistics.items():
-        print(f"- {cat}: {count} операция(-и)")
+    status = prompt_status()
+    filtered_data = filter_status(data, status)
 
+    if not filtered_data:
+        print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
+        return
 
-if __name__ == "__main__":
-    main()
+    if prompt_yes_no("Отсортировать операции по дате?"):
+        order = input("Отсортировать по возрастанию или по убыванию?\n").strip().lower()
+        reverse = order == "по убыванию"
+        filtered_data.sort(key=lambda x: x.get("date", ""), reverse=reverse)
+
+    if prompt_yes_no("Выводить только рублевые транзакции?"):
+        filtered_data = [op for op in filtered_data if op.get("amount_currency") == "руб."]
+
+    if prompt_yes_no("Отфильтровать список транзакций по определенному слову в описании?"):
+        search_word = input("Введите слово для поиска в описании:\n").strip()
+        filtered_data = process_bank_search(filtered_data, search_word)
+
+    if not filtered_data:
+        print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
+        return
+
+    print("Распечатываю итоговый список транзакций...\n")
+    print(f"Всего банковских операций в выборке: {len(filtered_data)}\n")
+
+    for op in filtered_data:
+        date = op.get("date", "")
+        description = op.get("description", "")
+        amount_value = op.get("amount_value", "")
+        amount_currency = op.get("amount_currency", "")
+        info = op.get("info", "")
+        print(f"{date} {description}")
+        if info:
+            print(info)
+        print(f"Сумма: {amount_value} {amount_currency}\n")

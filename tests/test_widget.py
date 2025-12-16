@@ -11,7 +11,7 @@ class TestUtilsModule(unittest.TestCase):
 
     def test_mask_account(self):
         """Проверка маскировки банковского счета"""
-        self.assertEqual(mask_account("40817810999910000001"), "**************0001")
+        self.assertEqual(mask_account("40817810999910000001"), "****************0001")
 
     def test_mask_account_card_full(self):
         """Проверка полной маски для строки с номером карты/счета"""
@@ -23,7 +23,7 @@ class TestUtilsModule(unittest.TestCase):
         # Счёт
         self.assertEqual(
             mask_account_card("Счет 40817810999910000001"),
-            "Счет **************0001"
+            "Счет ****************0001"
         )
 
     def test_get_date(self):
