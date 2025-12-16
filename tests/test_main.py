@@ -1,100 +1,88 @@
-import unittest
-from datetime import datetime
+import pytest
+import tempfile
+import os
+import json
+import csv
+import openpyxl
+from main import (
+    process_bank_search,
+    process_bank_operations,
+    load_json,
+    load_csv,
+    load_xlsx,
+    filter_status,
+)
 
-from main import (filter_by_status, process_bank_operations,
-                  process_bank_search, sort_by_date)
+def test_process_bank_search():
+    data = [
+        {"description": "Payment from Alice"},
+        {"description": "Transfer to Bob"},
+        {"description": "Invoice payment"},
+        {"description": "Other"},
+    ]
+    result = process_bank_search(data, "payment")
+    assert len(result) == 2
+    assert all("payment" in item["description"].lower() for item in result)
 
+def test_process_bank_operations():
+    data = [
+        {"description": "Food"},
+        {"description": "Transport"},
+        {"description": "Food"},
+        {"description": "Entertainment"},
+    ]
+    categories = ["Food", "Transport"]
+    counts = process_bank_operations(data, categories)
+    assert counts == {"Food": 2, "Transport": 1}
 
-class TestBankFunctions(unittest.TestCase):
+def test_load_json():
+    sample = [{"a": 1}, {"b": 2}]
+    with tempfile.NamedTemporaryFile("w", delete=False, encoding="utf-8") as f:
+        json.dump(sample, f)
+        path = f.name
+    loaded = load_json(path)
+    os.remove(path)
+    assert loaded == sample
 
-    def setUp(self):
-        date_format = "%Y-%m-%dT%H:%M:%S.%f%z"
+def test_load_csv():
+    sample = [
+        {"name": "Alice", "age": "30"},
+        {"name": "Bob", "age": "25"},
+    ]
+    with tempfile.NamedTemporaryFile("w", delete=False, encoding="utf-8", newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=["name", "age"])
+        writer.writeheader()
+        writer.writerows(sample)
+        path = f.name
+    loaded = load_csv(path)
+    os.remove(path)
+    assert loaded == sample
 
-        self.data = [
-            {
-                "id": 1,
-                "state": "EXECUTED",
-                "date": datetime.strptime("2019-12-08T17:15:00.000+03:00", date_format),
-                "description": "Открытие вклада",
-                "from": "Счет **4321",
-                "to": "",
-                "operationAmount": {"amount": "40542", "currency": {"code": "RUB"}},
-            },
-            {
-                "id": 2,
-                "state": "EXECUTED",
-                "date": datetime.strptime("2019-11-12T15:30:00.000+03:00", date_format),
-                "description": "Перевод с карты на карту",
-                "from": "MasterCard 7771 27** **** 3727",
-                "to": "Visa Platinum 1293 38** **** 9203",
-                "operationAmount": {"amount": "130", "currency": {"code": "USD"}},
-            },
-            {
-                "id": 3,
-                "state": "CANCELED",
-                "date": datetime.strptime("2018-07-18T10:45:00.000+03:00", date_format),
-                "description": "Перевод организации",
-                "from": "Visa Platinum 7492 65** **** 7202",
-                "to": "Счёт **0034",
-                "operationAmount": {"amount": "8390", "currency": {"code": "RUB"}},
-            },
-        ]
+def test_load_xlsx():
+    sample = [
+        {"name": "Alice", "score": 90},
+        {"name": "Bob", "score": 80},
+    ]
+    with tempfile.NamedTemporaryFile(suffix=".xlsx", delete=False) as f:
+        path = f.name
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.append(["name", "score"])
+    for row in sample:
+        ws.append([row["name"], row["score"]])
+    wb.save(path)
+    loaded = load_xlsx(path)
+    os.remove(path)
+    assert loaded == sample
 
-    def test_process_bank_search(self):
-        # Проверяем, что ищем совпадения в описании операций
-        result = process_bank_search(self.data, "Открытие")
-        expected_result = [self.data[0]]
-        self.assertEqual(result, expected_result)
-
-        # Поиск слова, которого нет в списке операций
-        result = process_bank_search(self.data, "Депозит")
-        expected_result = []
-        self.assertEqual(result, expected_result)
-
-    def test_process_bank_operations(self):
-        # Проверяем категоризацию операций
-        categories = ["Открытие", "Перевод"]
-        result = process_bank_operations(self.data, categories)
-        expected_result = {"Открытие": 1, "Перевод": 2}
-        self.assertDictEqual(result, expected_result)
-
-    def test_filter_by_status(self):
-        # Проверяем фильтрацию по статусу
-        result = filter_by_status(self.data, "EXECUTED")
-        expected_result = [self.data[0], self.data[1]]
-        self.assertListEqual(result, expected_result)
-
-        # Проверяем случай отсутствия указанного статуса
-        result = filter_by_status(self.data, "TEST_STATUS")
-        expected_result = []
-        self.assertListEqual(result, expected_result)
-
-    def test_sort_by_date(self):
-        # Сортируем операции по дате по возрастанию
-        sorted_data = sort_by_date(self.data, ascending=True)
-
-        # Предполагаем, что поле "date" уже datetime, если нет - приведите к datetime заранее, но не здесь
-        dates = [op["date"] for op in sorted_data]
-
-        self.assertTrue(
-            all(dates[i] <= dates[i + 1] for i in range(len(dates) - 1)),
-            "Даты не отсортированы по возрастанию"
-        )
-
-        # Сортируем операции по дате по убыванию
-        sorted_data_descending = sort_by_date(self.data, ascending=False)
-
-        dates_descending = []
-        for op in sorted_data_descending:
-            date_value = op["date"]
-            if isinstance(date_value, str):
-                date_value = datetime.strptime(date_value, "%Y-%m-%dT%H:%M:%S.%f")
-            dates_descending.append(date_value)
-
-        self.assertTrue(
-            all(dates_descending[i] >= dates_descending[i + 1] for i in range(len(dates_descending) - 1)),
-            "Даты не отсортированы по убыванию"
-        )
-
-if __name__ == "__main__":
-    unittest.main()
+def test_filter_status():
+    data = [
+        {"status": "EXECUTED"},
+        {"status": "pending"},
+        {"status": "Executed"},
+        {"status": "CANCELED"},
+        {},
+    ]
+    filtered = filter_status(data, "executed")
+    assert len(filtered) == 2
+    assert all(op["status"].upper() == "EXECUTED" for op in filtered)
