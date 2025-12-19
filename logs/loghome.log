@@ -1,0 +1,5 @@
+2025-12-19 17:29:17,970 | utils | WARNING | Содержимое файла 'data/operations.json' пустое
+2025-12-19 17:29:17,971 | utils | ERROR | Ошибка: файл '/nonexistent/path/to/file.json' не найден.
+2025-12-19 17:29:17,974 | utils | INFO | Успешно загружено 2 финансовых транзакций из файла 'data/operations.json'.
+2025-12-19 17:29:17,977 | utils | ERROR | Файл 'data/operations.json' содержит некорректный формат данных.
+2025-12-19 17:29:17,978 | utils | ERROR | Произошла ошибка при загрузке транзакций из файла 'data/operations.json': Some unexpected exception occurred..
