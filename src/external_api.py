@@ -13,9 +13,6 @@ def load_environment_variables():
 
     api_key_exchange_rates_data = os.getenv("API_KEY_EXCHANGE_RATES_DATA")
 
-    if not api_key_exchange_rates_data:
-        raise ValueError("Переменная API_KEY_EXCHANGE_RATES_DATA отсутствует в файле .env!")
-
     return {"api_key": api_key_exchange_rates_data}
 
 

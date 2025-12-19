@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="rework tests main">
+    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="rework main logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/external_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/external_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +61,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python tests.Python tests in test_widget.py.executor": "Run",
+    "Python tests.pytest for test_external_api.TestConvertCurrency.executor": "Run",
+    "Python tests.pytest for test_external_api.TestConvertCurrency.test_load_environment_variables.executor": "Run",
+    "Python tests.pytest for test_external_api.TestConvertCurrency.test_process_transaction_api_error.executor": "Run",
+    "Python tests.pytest for test_external_api.TestConvertCurrency.test_process_transaction_missing_currency.executor": "Run",
+    "Python tests.pytest for test_external_api.TestConvertCurrency.test_process_transaction_rub.executor": "Run",
+    "Python tests.pytest for test_external_api.TestConvertCurrency.test_process_transaction_usd_to_rub.executor": "Run",
+    "Python tests.pytest for test_generators.test_card_number_generator_valid.executor": "Run",
+    "Python tests.pytest for test_generators.test_filter_by_currency.executor": "Run",
     "Python tests.pytest for test_generators.test_transaction_descriptions.executor": "Run",
     "Python tests.pytest for test_main.TestBankFunctions.executor": "Run",
     "Python tests.pytest for test_main.TestBankFunctions.test_sort_by_date.executor": "Run",
@@ -68,6 +76,7 @@
     "Python tests.pytest for test_widget.TestUtilsModule.test_mask_account.executor": "Run",
     "Python tests.pytest for test_widget.TestUtilsModule.test_mask_account_card_full.executor": "Run",
     "Python tests.pytest for tests.executor": "Run",
+    "Python tests.pytest in test_external_api.py.executor": "Run",
     "Python tests.pytest in test_generators.py.executor": "Run",
     "Python.__init__.executor": "Run",
     "Python.csvread.executor": "Run",
@@ -93,8 +102,8 @@
       <recent name="C:\Users\mihee\PycharmProjects\pythonProject2" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for test_main.TestBankFunctions.test_sort_by_date">
-    <configuration name="pytest for test_main.TestBankFunctions.test_sort_by_date" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest for test_generators.test_card_number_generator_valid">
+    <configuration name="pytest for test_external_api.TestConvertCurrency" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject2" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -107,11 +116,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_main.TestBankFunctions.test_sort_by_date&quot;" />
+      <option name="_new_target" value="&quot;test_external_api.TestConvertCurrency&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_widget.TestUtilsModule.test_get_date" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_generators.test_card_number_generator_valid" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject2" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -124,11 +133,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_widget.TestUtilsModule.test_get_date&quot;" />
+      <option name="_new_target" value="&quot;test_generators.test_card_number_generator_valid&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_widget.TestUtilsModule.test_mask_account" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_generators.test_filter_by_currency" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject2" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -141,11 +150,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_widget.TestUtilsModule.test_mask_account&quot;" />
+      <option name="_new_target" value="&quot;test_generators.test_filter_by_currency&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_widget.TestUtilsModule.test_mask_account_card_full" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_generators.test_transaction_descriptions" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject2" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -158,11 +167,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_widget.TestUtilsModule.test_mask_account_card_full&quot;" />
+      <option name="_new_target" value="&quot;test_generators.test_transaction_descriptions&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for tests" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_external_api.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject2" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -175,17 +184,17 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_external_api.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for test_main.TestBankFunctions.test_sort_by_date" />
-        <item itemvalue="Python tests.pytest for tests" />
-        <item itemvalue="Python tests.pytest for test_widget.TestUtilsModule.test_mask_account_card_full" />
-        <item itemvalue="Python tests.pytest for test_widget.TestUtilsModule.test_mask_account" />
-        <item itemvalue="Python tests.pytest for test_widget.TestUtilsModule.test_get_date" />
+        <item itemvalue="Python tests.pytest for test_generators.test_card_number_generator_valid" />
+        <item itemvalue="Python tests.pytest for test_generators.test_filter_by_currency" />
+        <item itemvalue="Python tests.pytest for test_generators.test_transaction_descriptions" />
+        <item itemvalue="Python tests.pytest for test_external_api.TestConvertCurrency" />
+        <item itemvalue="Python tests.pytest in test_external_api.py" />
       </list>
     </recent_temporary>
   </component>
@@ -204,14 +213,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760028566343</updated>
-    </task>
-    <task id="LOCAL-00022" summary="idea">
-      <option name="closed" value="true" />
-      <created>1762457178796</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1762457178796</updated>
     </task>
     <task id="LOCAL-00023" summary="idea">
       <option name="closed" value="true" />
@@ -597,7 +598,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765894817630</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="rework main logic">
+      <option name="closed" value="true" />
+      <created>1766154021231</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1766154021231</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -614,7 +623,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="rework home dec" />
     <MESSAGE value="external_api and utils" />
     <MESSAGE value="tests" />
     <MESSAGE value="rework external, tests and json_file" />
@@ -639,7 +647,8 @@
     <MESSAGE value="rework main and test for widget and main" />
     <MESSAGE value=".idea" />
     <MESSAGE value="rework tests main" />
-    <option name="LAST_COMMIT_MESSAGE" value="rework tests main" />
+    <MESSAGE value="rework main logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="rework main logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
