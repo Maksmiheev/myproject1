@@ -69,7 +69,7 @@ def main():
         choice = input().strip()
         if choice == "1":
             print("Для обработки выбран JSON-файл.")
-            data = load_json("data.json")  # Здесь можно запросить у пользователя путь к файлу
+            data = load_json("data/operations.json")
             break
         elif choice == "2":
             print("Для обработки выбран CSV-файл.")
@@ -85,36 +85,47 @@ def main():
     status = prompt_status()
     filtered_data = filter_status(data, status)
 
-    if not filtered_data:
-        print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
+    # Проверяем наличие записей после фильтрации
+    if len(filtered_data) == 0:
+        print("Не найдено ни одной транзакции, соответствующей вашим условиям фильтрации.")
         return
 
     if prompt_yes_no("Отсортировать операции по дате?"):
-        order = input("Отсортировать по возрастанию или по убыванию?\n").strip().lower()
-        reverse = order == "по убыванию"
-        filtered_data.sort(key=lambda x: x.get("date", ""), reverse=reverse)
+        sort_order = input("Отсортировать по возрастанию или по убыванию?\\n").strip().lower()
+        reverse_sort = sort_order == "по убыванию"
+        filtered_data.sort(key=lambda x: x.get("date", ""), reverse=reverse_sort)
+
 
     if prompt_yes_no("Выводить только рублевые транзакции?"):
         filtered_data = [op for op in filtered_data if op.get("amount_currency") == "руб."]
+        if len(filtered_data) == 0:
+            print("Не найдено ни одной транзакции в рублях.")
+            return
 
-    if prompt_yes_no("Отфильтровать список транзакций по определенному слову в описании?"):
-        search_word = input("Введите слово для поиска в описании:\n").strip()
+
+    if prompt_yes_no("Отфильтровать список транзакций по определённому слову в описании?"):
+        search_word = input("Введите слово для поиска в описании:\\n").strip()
         filtered_data = process_bank_search(filtered_data, search_word)
+        if len(filtered_data) == 0:
+            print("Не найдено ни одной транзакции, содержащей данное слово в описании.")
+            return
 
-    if not filtered_data:
-        print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
-        return
 
-    print("Распечатываю итоговый список транзакций...\n")
-    print(f"Всего банковских операций в выборке: {len(filtered_data)}\n")
+    print("\\nРаспечатываю итоговый список транзакций...\\n")
+    print(f"Всего банковских операций в выборке: {len(filtered_data)}")
 
-    for op in filtered_data:
-        date = op.get("date", "")
-        description = op.get("description", "")
-        amount_value = op.get("amount_value", "")
-        amount_currency = op.get("amount_currency", "")
-        info = op.get("info", "")
+    for transaction in filtered_data:
+        date = transaction.get("date", "")
+        description = transaction.get("description", "")
+        amount_value = transaction.get("amount_value", "")
+        amount_currency = transaction.get("amount_currency", "")
+        additional_info = transaction.get("info", "")
+
         print(f"{date} {description}")
-        if info:
-            print(info)
-        print(f"Сумма: {amount_value} {amount_currency}\n")
+        if additional_info:
+            print(additional_info)
+        print(f"Сумма: {amount_value} {amount_currency}\\n")
+
+
+if __name__ == "__main__":
+    main()
