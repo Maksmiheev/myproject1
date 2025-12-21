@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="ex api rework env">
+    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="id">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,6 +87,9 @@
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   },
   "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory"
+    ],
     "GitStage.ChangesTree.GroupingKeys": [
       "directory",
       "module",
@@ -212,14 +215,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760028566343</updated>
-    </task>
-    <task id="LOCAL-00024" summary="idea">
-      <option name="closed" value="true" />
-      <created>1762458841351</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1762458841351</updated>
     </task>
     <task id="LOCAL-00025" summary="generators">
       <option name="closed" value="true" />
@@ -605,7 +600,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766159492402</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="id">
+      <option name="closed" value="true" />
+      <created>1766160595654</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1766160595654</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -622,7 +625,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="tests" />
     <MESSAGE value="rework external, tests and json_file" />
     <MESSAGE value="rework json homew" />
     <MESSAGE value="API add" />
@@ -647,7 +649,8 @@
     <MESSAGE value="rework tests main" />
     <MESSAGE value="rework main logic" />
     <MESSAGE value="ex api rework env" />
-    <option name="LAST_COMMIT_MESSAGE" value="ex api rework env" />
+    <MESSAGE value="id" />
+    <option name="LAST_COMMIT_MESSAGE" value="id" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
