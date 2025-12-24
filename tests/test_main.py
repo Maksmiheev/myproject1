@@ -1,17 +1,13 @@
-import pytest
-import tempfile
-import os
-import json
 import csv
+import json
+import os
+import tempfile
+
 import openpyxl
-from main import (
-    process_bank_search,
-    process_bank_operations,
-    load_json,
-    load_csv,
-    load_xlsx,
-    filter_status,
-)
+
+from main import (filter_status, load_csv, load_json, load_xlsx,
+                  process_bank_operations, process_bank_search)
+
 
 def test_process_bank_search():
     data = [
@@ -24,6 +20,7 @@ def test_process_bank_search():
     assert len(result) == 2
     assert all("payment" in item["description"].lower() for item in result)
 
+
 def test_process_bank_operations():
     data = [
         {"description": "Food"},
@@ -35,6 +32,7 @@ def test_process_bank_operations():
     counts = process_bank_operations(data, categories)
     assert counts == {"Food": 2, "Transport": 1}
 
+
 def test_load_json():
     sample = [{"a": 1}, {"b": 2}]
     with tempfile.NamedTemporaryFile("w", delete=False, encoding="utf-8") as f:
@@ -44,12 +42,13 @@ def test_load_json():
     os.remove(path)
     assert loaded == sample
 
+
 def test_load_csv():
     sample = [
         {"name": "Alice", "age": "30"},
         {"name": "Bob", "age": "25"},
     ]
-    with tempfile.NamedTemporaryFile("w", delete=False, encoding="utf-8", newline='') as f:
+    with tempfile.NamedTemporaryFile("w", delete=False, encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=["name", "age"])
         writer.writeheader()
         writer.writerows(sample)
@@ -57,6 +56,7 @@ def test_load_csv():
     loaded = load_csv(path)
     os.remove(path)
     assert loaded == sample
+
 
 def test_load_xlsx():
     sample = [
@@ -74,6 +74,7 @@ def test_load_xlsx():
     loaded = load_xlsx(path)
     os.remove(path)
     assert loaded == sample
+
 
 def test_filter_status():
     data = [

@@ -23,7 +23,7 @@ def log(filename=None):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            logger.info(f"Начало выполнения функции")
+            logger.info("Начало выполнения функции")
             try:
                 result = func(*args, **kwargs)
                 logger.info(f"Функция успешно выполнена. Результат: {result}")

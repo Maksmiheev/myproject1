@@ -1,21 +1,20 @@
-import unittest
-from io import StringIO
-import tempfile
 import os
+import tempfile
+import unittest
+
 import pandas as pd
 from openpyxl import Workbook
-from src.csvread import (read_financial_csv,read_financial_xlsx)
+
+from src.csvread import read_financial_csv, read_financial_xlsx
+
 
 class TestFinancialFileReading(unittest.TestCase):
 
     def setUp(self):
-        self.test_data = [
-            {"Date": "2023-01-01", "Amount": 100},
-            {"Date": "2023-01-02", "Amount": 200}
-        ]
+        self.test_data = [{"Date": "2023-01-01", "Amount": 100}, {"Date": "2023-01-02", "Amount": 200}]
 
     def test_read_valid_csv_file(self):
-        with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix=".csv") as temp_csv:
+        with tempfile.NamedTemporaryFile(mode="w+", delete=False, suffix=".csv") as temp_csv:
             df = pd.DataFrame(self.test_data)
             df.to_csv(temp_csv.name, index=False)
 
@@ -31,7 +30,7 @@ class TestFinancialFileReading(unittest.TestCase):
         self.assertEqual(result, [])
 
     def test_read_empty_csv_file(self):
-        with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix=".csv") as empty_csv:
+        with tempfile.NamedTemporaryFile(mode="w+", delete=False, suffix=".csv") as empty_csv:
             pass  # Создаем пустой файл
 
             result = read_financial_csv(empty_csv.name)
@@ -40,7 +39,7 @@ class TestFinancialFileReading(unittest.TestCase):
         os.unlink(empty_csv.name)
 
     def test_read_valid_xlsx_file(self):
-        with tempfile.NamedTemporaryFile(mode='wb+', delete=False, suffix=".xlsx") as temp_xlsx:
+        with tempfile.NamedTemporaryFile(mode="wb+", delete=False, suffix=".xlsx") as temp_xlsx:
             df = pd.DataFrame(self.test_data)
             df.to_excel(temp_xlsx.name, index=False)
 
@@ -56,7 +55,7 @@ class TestFinancialFileReading(unittest.TestCase):
         self.assertEqual(result, [])
 
     def test_read_empty_xlsx_file(self):
-        with tempfile.NamedTemporaryFile(mode='wb+', delete=False, suffix=".xlsx") as empty_xlsx:
+        with tempfile.NamedTemporaryFile(mode="wb+", delete=False, suffix=".xlsx") as empty_xlsx:
             wb = Workbook()
             ws = wb.active
             wb.save(empty_xlsx.name)
@@ -67,5 +66,5 @@ class TestFinancialFileReading(unittest.TestCase):
         os.unlink(empty_xlsx.name)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

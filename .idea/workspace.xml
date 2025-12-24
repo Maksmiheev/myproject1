@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="coverage" />
+    <list default="true" id="d3515ee5-ce22-4851-8587-40d8c18cae76" name="Changes" comment="coverage new">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_csvread.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_csvread.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_generators.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_generators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_masks.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_masks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_widget.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,46 +63,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests in test_widget.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_external_api.TestConvertCurrency.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_external_api.TestConvertCurrency.test_load_environment_variables.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_external_api.TestConvertCurrency.test_process_transaction_api_error.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_external_api.TestConvertCurrency.test_process_transaction_missing_currency.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_external_api.TestConvertCurrency.test_process_transaction_rub.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_external_api.TestConvertCurrency.test_process_transaction_usd_to_rub.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_generators.test_card_number_generator_valid.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_generators.test_filter_by_currency.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_generators.test_transaction_descriptions.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_main.TestBankFunctions.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_main.TestBankFunctions.test_sort_by_date.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_widget.TestUtilsModule.test_get_date.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_widget.TestUtilsModule.test_mask_account.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for test_widget.TestUtilsModule.test_mask_account_card_full.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest for tests.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in test_external_api.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.pytest in test_generators.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
-    &quot;Python.csvread.executor&quot;: &quot;Run&quot;,
-    &quot;Python.masks.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ш.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#37 on feature/homework__10__2&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mihee/PycharmProjects&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests in test_widget.py.executor": "Run",
+    "Python tests.pytest for test_external_api.TestConvertCurrency.executor": "Run",
+    "Python tests.pytest for test_external_api.TestConvertCurrency.test_load_environment_variables.executor": "Run",
+    "Python tests.pytest for test_external_api.TestConvertCurrency.test_process_transaction_api_error.executor": "Run",
+    "Python tests.pytest for test_external_api.TestConvertCurrency.test_process_transaction_missing_currency.executor": "Run",
+    "Python tests.pytest for test_external_api.TestConvertCurrency.test_process_transaction_rub.executor": "Run",
+    "Python tests.pytest for test_external_api.TestConvertCurrency.test_process_transaction_usd_to_rub.executor": "Run",
+    "Python tests.pytest for test_generators.test_card_number_generator_valid.executor": "Run",
+    "Python tests.pytest for test_generators.test_filter_by_currency.executor": "Run",
+    "Python tests.pytest for test_generators.test_transaction_descriptions.executor": "Run",
+    "Python tests.pytest for test_main.TestBankFunctions.executor": "Run",
+    "Python tests.pytest for test_main.TestBankFunctions.test_sort_by_date.executor": "Run",
+    "Python tests.pytest for test_widget.TestUtilsModule.test_get_date.executor": "Run",
+    "Python tests.pytest for test_widget.TestUtilsModule.test_mask_account.executor": "Run",
+    "Python tests.pytest for test_widget.TestUtilsModule.test_mask_account_card_full.executor": "Run",
+    "Python tests.pytest for tests.executor": "Run",
+    "Python tests.pytest in test_external_api.py.executor": "Run",
+    "Python tests.pytest in test_generators.py.executor": "Run",
+    "Python.__init__.executor": "Run",
+    "Python.csvread.executor": "Run",
+    "Python.masks.executor": "Run",
+    "Python.ш.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "#39 on feature/homework__10__2",
+    "last_opened_file_path": "C:/Users/mihee/PycharmProjects",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory"
     ],
-    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;,
-      &quot;repository&quot;
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mihee\PycharmProjects\pythonProject2\data" />
@@ -213,14 +221,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1760028566343</updated>
-    </task>
-    <task id="LOCAL-00027" summary="generators">
-      <option name="closed" value="true" />
-      <created>1762715061486</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1762715061486</updated>
     </task>
     <task id="LOCAL-00028" summary="generators">
       <option name="closed" value="true" />
@@ -606,7 +606,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766332237165</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="coverage new">
+      <option name="closed" value="true" />
+      <created>1766408300056</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1766408300056</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -623,7 +631,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="rework json homew" />
     <MESSAGE value="API add" />
     <MESSAGE value="ex api" />
     <MESSAGE value="ex api 2" />
@@ -648,7 +655,8 @@
     <MESSAGE value="id" />
     <MESSAGE value="test csv" />
     <MESSAGE value="coverage" />
-    <option name="LAST_COMMIT_MESSAGE" value="coverage" />
+    <MESSAGE value="coverage new" />
+    <option name="LAST_COMMIT_MESSAGE" value="coverage new" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

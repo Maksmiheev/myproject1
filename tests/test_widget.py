@@ -16,15 +16,9 @@ class TestUtilsModule(unittest.TestCase):
     def test_mask_account_card_full(self):
         """Проверка полной маски для строки с номером карты/счета"""
         # Карта
-        self.assertEqual(
-            mask_account_card("Visa Classic 1234567890123456"),
-            "Visa Classic 123456******3456"
-        )
+        self.assertEqual(mask_account_card("Visa Classic 1234567890123456"), "Visa Classic 123456******3456")
         # Счёт
-        self.assertEqual(
-            mask_account_card("Счет 40817810999910000001"),
-            "Счет ****************0001"
-        )
+        self.assertEqual(mask_account_card("Счет 40817810999910000001"), "Счет ****************0001")
 
     def test_get_date(self):
         """Проверка правильного формата даты"""

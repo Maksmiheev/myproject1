@@ -1,16 +1,14 @@
-import os
+import csv
+import json
 import re
 from collections import Counter
-import json
-import csv
+
 import openpyxl
-from datetime import datetime
 
 
 def process_bank_search(data: list[dict], search: str) -> list[dict]:
     pattern = re.compile(re.escape(search), re.IGNORECASE)
     return [item for item in data if pattern.search(item.get("description", ""))]
-
 
 
 def process_bank_operations(data: list[dict], categories: list[str]) -> dict:
@@ -19,15 +17,16 @@ def process_bank_operations(data: list[dict], categories: list[str]) -> dict:
     return {category: counts.get(category, 0) for category in categories}
 
 
-
 def load_json(path):
     with open(path, encoding="utf-8") as f:
         return json.load(f)
+
 
 def load_csv(path):
     with open(path, encoding="utf-8") as f:
         reader = csv.DictReader(f)
         return list(reader)
+
 
 def load_xlsx(path):
     wb = openpyxl.load_workbook(path)
@@ -38,18 +37,27 @@ def load_xlsx(path):
         data.append({headers[i]: row[i].value for i in range(len(headers))})
     return data
 
+
 def filter_status(data, status):
     status = status.upper()
     return [op for op in data if (op.get("status", "").upper() == status)]
 
+
 def prompt_status():
     statuses = ["EXECUTED", "CANCELED", "PENDING"]
     while True:
-        status = input(f'Введите статус, по которому необходимо выполнить фильтрацию.\nДоступные для фильтрации статусы: {", ".join(statuses)}\n').strip().upper()
+        status = (
+            input(
+                f'Введите статус, по которому необходимо выполнить фильтрацию.\nДоступные для фильтрации статусы: {", ".join(statuses)}\n'
+            )
+            .strip()
+            .upper()
+        )
         if status in statuses:
             print(f'Операции отфильтрованы по статусу "{status}"')
             return status
         print(f'Статус операции "{status}" недоступен.')
+
 
 def prompt_yes_no(message):
     while True:
@@ -57,6 +65,7 @@ def prompt_yes_no(message):
         if answer in ["да", "нет"]:
             return answer == "да"
         print("Пожалуйста, введите 'Да' или 'Нет'.")
+
 
 def main():
     print("Привет! Добро пожаловать в программу работы с банковскими транзакциями.")
@@ -95,13 +104,11 @@ def main():
         reverse_sort = sort_order == "по убыванию"
         filtered_data.sort(key=lambda x: x.get("date", ""), reverse=reverse_sort)
 
-
     if prompt_yes_no("Выводить только рублевые транзакции?"):
         filtered_data = [op for op in filtered_data if op.get("amount_currency") == "руб."]
         if len(filtered_data) == 0:
             print("Не найдено ни одной транзакции в рублях.")
             return
-
 
     if prompt_yes_no("Отфильтровать список транзакций по определённому слову в описании?"):
         search_word = input("Введите слово для поиска в описании:\\n").strip()
@@ -109,7 +116,6 @@ def main():
         if len(filtered_data) == 0:
             print("Не найдено ни одной транзакции, содержащей данное слово в описании.")
             return
-
 
     print("\\nРаспечатываю итоговый список транзакций...\\n")
     print(f"Всего банковских операций в выборке: {len(filtered_data)}")
