@@ -57,7 +57,6 @@ class TestFinancialFileReading(unittest.TestCase):
     def test_read_empty_xlsx_file(self):
         with tempfile.NamedTemporaryFile(mode="wb+", delete=False, suffix=".xlsx") as empty_xlsx:
             wb = Workbook()
-            ws = wb.active
             wb.save(empty_xlsx.name)
 
             result = read_financial_xlsx(empty_xlsx.name)
